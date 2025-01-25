@@ -91,158 +91,71 @@ if(window.localStorage.getItem("_loginState") !== null) // User has already logg
 <!-- START HEADER -->
 <header class="header_wrap fixed-top header_with_topbar">
     <div class="bottom_header dark_skin main_menu_uppercase">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg"> 
-                    <a class="navbar-brand" href="index.html">
-                       
-                     <!-- [HEADER LOGO] -->  
-                        <img class="logo_light" src="./assets/images/logos/Logo side name - 310 x 220.png" alt="PetPurely Header Logo" />
-                        <img class="logo_dark" src="./assets/images/logos/Logo side name - 310 x 220.png" alt="PetPurely Header Logo" />
-                     <!-- End of Header Logo --> 
-                    
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false"> 
-                        <span class="ion-android-menu"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-
-                            <li class="dropdown">
-                                <li><a class="nav-link nav_item" href="./index.html">Home</a></li> 
+        <div class="container">
+            <nav class="navbar navbar-expand-lg d-flex justify-content-between align-items-center">
+                <div class="navbar-nav flex-grow-1 d-flex justify-content-start">
+                    <a class="nav-link nav_item" href="./index.html">Home</a>
+                    <a class="nav-link nav_item" href="./about.html">About Us</a>
+                    <a class="nav-link nav_item" href="./contact.html">Contact Us</a>
+                </div>
+                
+                <!-- START HEADER LOGO --> 
+                <div class="navbar-brand mx-auto">
+                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                </div>
+                <!-- End of HEADER LOGO --> 
+                
+                <div class="navbar-nav flex-grow-1 d-flex justify-content-end">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./products.html" id="productsMenu" role="button" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productsMenu">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Cats</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
                             </li>
-
-                            <li class="dropdown">
-                                <li><a class="nav-link nav_item" href="./about.html">About Us</a></li> 
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Dogs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
                             </li>
-
-                            <li class="dropdown">
-                                <a class="dropdown-toggle nav-link nav_item" href="./products.html">Products</a>
-                                
-                                 <div class="dropdown-menu dropdown-reverse">
-                                    
-                                  <!-- Cats Category -->  
-                                    <ul>
-                                        <li>
-                                            <a class="dropdown-item menu-link dropdown-toggler" href="#">Cats</a>
-                                            <div class="dropdown-menu">
-                                                <ul> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                     </ul>
-                                     <!-- End of Cats Category -->
-
-                                    <!-- Dogs Category --> 
-                                     <ul>
-                                        <li>
-                                            <a class="dropdown-item menu-link dropdown-toggler" href="#">Dogs</a>
-                                            <div class="dropdown-menu">
-                                                <ul> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                     </ul>
-                                   <!-- End of Dogs Category -->  
-
-                                   <!-- Hamsters Category -->
-
-                                     <ul>
-                                        <li>
-                                            <a class="dropdown-item menu-link dropdown-toggler" href="#">Hamsters</a>
-                                            <div class="dropdown-menu">
-                                                <ul> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                     </ul>
-                                   <!-- End of Hamsters Category -->  
-                                   
-                                   <!-- Parrots Category -->
-                                     <ul>
-                                        <li>
-                                            <a class="dropdown-item menu-link dropdown-toggler" href="#">Parrots</a>
-                                            <div class="dropdown-menu">
-                                                <ul> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                    <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                     </ul>
-                                <!-- End of Parrots Category -->
-
-                                 </div>    
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Hamsters</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
                             </li>
-                            
-                            <li class="dropdown">
-                                <li><a class="nav-link nav_item" href="#" onclick="alert('Sorry,this feature is still under development.');">Services</a></li> 
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Parrots</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
                             </li>
-                            <!--<li><a class="nav-link nav_item" href="contact.html">Contact Us</a></li> -->
-                        </ul>
-                        <ul class="header_list">
-                            <li><a href="./login.html"><!--<i class="ti-user"></i>--><span id="lnkLogin">Login</span></a></li>
                         </ul>
                     </div>
-                    <ul class="navbar-nav attr-nav align-items-center">
-                        <li><a href="javascript:;" class="nav-link search_trigger"><i class="linearicons-magnifier"></i></a>
-                            <div class="search_wrap">
-                                <span class="close-search"><i class="ion-ios-close-empty"></i></span>
-                                <form>
-                                    <input type="text" placeholder="Search" class="form-control" id="search_input">
-                                    <button type="submit" class="search_icon"><i class="ion-ios-search-strong"></i></button>
-                                </form>
-                            </div><div class="search_overlay"></div>
-                        </li>
-                        <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">0</span></a>
-                            
-                         <!-- Cart Box Dropdown Menu -->   
-                            <div class="cart_box dropdown-menu dropdown-menu-right" id="viewCartItems">
-                            
-                              <!-- Cart List -->  
-                                <ul class="cart_list">
-                                    <li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/cart_thamb1.jpg" id="imgListCart" alt="cart_thumb1"><span id="viewListCart">Variable product 001</span></a>
-                                        <!--<span class="cart_quantity" id="drpDwnProductQuantity"> 1 x </span><span class="cart_amount"></span> <span class="price_symbole">$</span><span id="drpDwnProductPrice">78.00</span>-->
-                                        <span class="cart_quantity" id="drpDwnProductQuantity"> 1 x </span><span class="price_symbole">$</span><span class="cart-amount" id="drpDwnProductPrice">78.00</span>
-                                    </li>
-                                    <!--<li>
-                                        <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                        <a href="#"><img src="assets/images/cart_thamb2.jpg" alt="cart_thumb2">Ornare sed consequat</a>
-                                        <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span>
-                                    </li> -->
-                                </ul>
-                              <!-- End of Cart List -->    
-                            
-                              <!-- Cart Footer -->
-                                <div class="cart_footer" >
-                                    <p class="cart_total" id="cartListSubTotal"><strong>Subtotal:</strong><span class="price_symbole">$</span><span class="cart-price" id="drpDwnFooterProductPrice">78.00</span></p>
-                                    <p class="cart_buttons"><a href="./addToCart.html" class="btn btn-fill-line view-cart">View Cart</a><a href="./checkout.html" class="btn btn-fill-out checkout">Checkout</a></p>
-                                </div>
-                              <!-- End of Cart Footer --> 
-                                
-                            </div>
-                         <!-- End of Cart Box Dropdown Menu -->      
-                        
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                    <a class="nav-link nav_item" href="#" onclick="alert('Sorry, this feature is still under development.');">Services</a>
+                    <a class="nav-link nav_item" href="./login.html">Login / Signup</a>
+                </div>
+            </nav>
         </div>
+    </div>
 </header>
 <!-- END HEADER -->
 
@@ -254,12 +167,13 @@ if(window.localStorage.getItem("_loginState") !== null) // User has already logg
 
           <!-- First Carousell Image Banner -->  
             <!--<div class="carousel-item active background_bg" data-img-src="assets/images/banner1.jpg">-->
-            <div class="carousel-item active background_bg" data-img-src="assets/images/Pets_Banner_5.png">     
+            <div class="carousel-item active background_bg" data-img-src="assets/images/Pets_Banner_Welcome_to_PetPurely_1920x608.png">     
                 <div class="banner_slide_content">
                     <div class="container"><!-- START CONTAINER -->
                         <div class="row">
                             <div class="col-lg-7 col-9">
-                                <div class="banner_content overflow-hidden">
+                                <!--<div class="banner_content overflow-hidden">-->
+                                <div class="banner_content">    
                                 	<!--<h5 class="mb-3 staggered-animation font-weight-light" data-animation="slideInLeft" data-animation-delay="0.5s">Get up to 50% off Today Only!</h5>-->
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="slideInLeft" data-animation-delay="0.5s"></h5>
                                     <!--<h2 class="staggered-animation" data-animation="slideInLeft" data-animation-delay="1s">Woman Fashion</h2>-->
@@ -272,6 +186,7 @@ if(window.localStorage.getItem("_loginState") !== null) // User has already logg
                 </div>
             </div>
            <!-- End of First Carousell Image Banner -->
+
            <!-- Second Carousell Image Banner -->  
             <!--<div class="carousel-item background_bg" data-img-src="assets/images/banner2.jpg">-->
             <div class="carousel-item active background_bg" data-img-src="assets/images/Pets_Banner_6.png">     
@@ -323,6 +238,51 @@ if(window.localStorage.getItem("_loginState") !== null) // User has already logg
 
 <!-- END MAIN CONTENT -->
 <div class="main_content">
+
+<!-- START SECTION BANNER (4 Columns)  -->
+<div class="section pb_70">
+	<div class="container-fluid">
+    	<div class="row justify-content-center">
+        	
+        </div>
+        <div class="row justify-content-center">
+        	<div class="col-lg-3 col-sm-6">
+            	<div class="team_box team_style1">
+                	<div class="team_img">
+                    	<!--<img src="assets/images/team_img1.jpg" alt="team_img1">-->
+                        <img src="assets/images/Pets_Food_1.png" alt="team_img1">                
+                    </ul>
+                    </div>    
+                </div> 
+            </div>
+            <div class="col-lg-3 col-sm-6">
+            	<div class="team_box team_style1">
+                	 <div class="team_img">
+                    	<!--<img src="assets/images/team_img2.jpg" alt="team_img2"> -->
+                        <img src="assets/images/Pets_Services_2.png" alt="team_img2">
+                    </div> 
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+            	<div class="team_box team_style1">
+                	<div class="team_img">
+                    	<!--<img src="assets/images/team_img3.jpg" alt="team_img3">-->
+                        <img src="assets/images/Pets_Food_1.png" alt="team_img3">                        
+                    </div> 
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+            	<div class="team_box team_style1">
+                	<div class="team_img">
+                    	<!--<img src="assets/images/team_img4.jpg" alt="team_img4">-->
+                        <img src="assets/images/Pets_Services_2.png" alt="team_img4">
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SECTION BANNER (4 Columns) -->    
 
 <!-- START SECTION BANNER (2 Columns) -->
 <div class="section pb_20">
@@ -2088,7 +2048,7 @@ if(window.localStorage.getItem("_loginState") !== null) // User has already logg
                             </li>
                             <li>
                                 <i class="ti-mobile"></i>
-                                <p>+ 457 789 789 65</p>
+                                <p>+65 1234 5678</p>
                             </li>
                             <l1> <!-- Link to Contact Us Form -->
                                 <ul class="widget_links">

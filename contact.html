@@ -67,142 +67,67 @@
 <header class="header_wrap fixed-top header_with_topbar">
     <div class="bottom_header dark_skin main_menu_uppercase">
         <div class="container">
-            <nav class="navbar navbar-expand-lg"> 
-                <a class="navbar-brand" href="index.html">
-                   
-                 <!-- [HEADER LOGO] -->  
-                    <img class="logo_light" src="./assets/images/logos/Logo side name - 310 x 220.png" alt="PetPurely Header Logo" />
-                    <img class="logo_dark" src="./assets/images/logos/Logo side name - 310 x 220.png" alt="PetPurely Header Logo" />
-                 <!-- End of Header Logo --> 
-                
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false"> 
-                    <span class="ion-android-menu"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-
-                        <li class="dropdown">
-                            <li><a class="nav-link nav_item" href="./index.html">Home</a></li> 
-                        </li>
-
-                        <li class="dropdown">
-                            <li><a class="nav-link nav_item" href="./about.html">About Us</a></li> 
-                        </li>
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle nav-link nav_item" href="./products.html">Products</a>
-
-                            <div class="dropdown-menu dropdown-reverse">
-                                    
-                                <!-- Cats Category -->  
-                                  <ul>
-                                      <li>
-                                          <a class="dropdown-item menu-link dropdown-toggler" href="#">Cats</a>
-                                          <div class="dropdown-menu">
-                                              <ul> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                              </ul>
-                                          </div>
-                                      </li>
-                                   </ul>
-                                   <!-- End of Cats Category -->
-
-                                  <!-- Dogs Category --> 
-                                   <ul>
-                                      <li>
-                                          <a class="dropdown-item menu-link dropdown-toggler" href="#">Dogs</a>
-                                          <div class="dropdown-menu">
-                                              <ul> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                              </ul>
-                                          </div>
-                                      </li>
-                                   </ul>
-                                 <!-- End of Dogs Category -->  
-
-                                 <!-- Hamsters Category -->
-
-                                   <ul>
-                                      <li>
-                                          <a class="dropdown-item menu-link dropdown-toggler" href="#">Hamsters</a>
-                                          <div class="dropdown-menu">
-                                              <ul> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                              </ul>
-                                          </div>
-                                      </li>
-                                   </ul>
-                                 <!-- End of Hamsters Category -->  
-                                 
-                                 <!-- Parrots Category -->
-                                   <ul>
-                                      <li>
-                                          <a class="dropdown-item menu-link dropdown-toggler" href="#">Parrots</a>
-                                          <div class="dropdown-menu">
-                                              <ul> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Food</a></li>
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Treats</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Boarding</a></li> 
-                                                  <li><a class="dropdown-item nav-link nav_item" href="#">Funeral Service</a></li>
-                                              </ul>
-                                          </div>
-                                      </li>
-                                   </ul>
-                              <!-- End of Parrots Category -->
-
-                               </div>
-                        </li>
-                        
-                        <li class="dropdown">
-                            <li><a class="nav-link nav_item" href="#" onclick="alert('Sorry,this feature is still under development.');">Services</a></li> 
-                        </li>
-                        <!--<li><a class="nav-link nav_item" href="contact.html">Contact Us</a></li> -->
-                    </ul>
-                    <ul class="header_list">
-                        <li><a href="login.html"><i class="ti-user"></i><span id="lnkLogin">Login</span></a></li>
-                    </ul>
+            <nav class="navbar navbar-expand-lg d-flex justify-content-between align-items-center">
+                <div class="navbar-nav flex-grow-1 d-flex justify-content-start">
+                    <a class="nav-link nav_item" href="./index.html">Home</a>
+                    <a class="nav-link nav_item" href="./about.html">About Us</a>
+                    <a class="nav-link nav_item" href="./contact.html">Contact Us</a>
                 </div>
-                <ul class="navbar-nav attr-nav align-items-center">
-                    <li><a href="javascript:;" class="nav-link search_trigger"><i class="linearicons-magnifier"></i></a>
-                        <div class="search_wrap">
-                            <span class="close-search"><i class="ion-ios-close-empty"></i></span>
-                            <form>
-                                <input type="text" placeholder="Search" class="form-control" id="search_input">
-                                <button type="submit" class="search_icon"><i class="ion-ios-search-strong"></i></button>
-                            </form>
-                        </div><div class="search_overlay"></div>
-                    </li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-bs-toggle="dropdown"><i class="linearicons-cart"></i><span class="cart_count">0</span></a>
-                        <div class="cart_box dropdown-menu dropdown-menu-right">
-                            <ul class="cart_list">
-                                <li>
-                                    <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="#"><img src="assets/images/cart_thamb1.jpg" alt="cart_thumb1"><span id="drpDwnProductName">Variable product 001</span></a>
-                                    <span class="cart_quantity" id="drpDwnProductQuantity"> 1 x </span><span class="cart_amount"></span> <span class="price_symbole">$</span><span id="drpDwnProductPrice">78.00</span>
-                                </li>
-                                <!--<li>
-                                    <a href="#" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="#"><img src="assets/images/cart_thamb2.jpg" alt="cart_thumb2">Ornare sed consequat</a>
-                                    <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span>
-                                </li> -->
-                            </ul>
-                            <div class="cart_footer">
-                                <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"></span> <span class="price_symbole">$</span><span id="drpDwnFooterProductPrice">78.00</span></p>
-                                <p class="cart_buttons"><a href="./addToCart.html" class="btn btn-fill-line view-cart">View Cart</a><a href="./checkout.html" class="btn btn-fill-out checkout">Checkout</a></p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                
+                <!-- START HEADER LOGO --> 
+                <div class="navbar-brand mx-auto">
+                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                </div>
+                <!-- End of HEADER LOGO --> 
+                
+                <div class="navbar-nav flex-grow-1 d-flex justify-content-end">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="./products.html" id="productsMenu" role="button" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productsMenu">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Cats</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Dogs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Hamsters</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Parrots</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Food</a></li>
+                                    <li><a class="dropdown-item" href="#">Treats</a></li>
+                                    <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                    <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav_item" href="#" onclick="alert('Sorry, this feature is still under development.');">Services</a>
+                    <a class="nav-link nav_item" href="./login.html">Login / Signup</a>
+                </div>
             </nav>
         </div>
     </div>
@@ -244,7 +169,7 @@
                     </div>
                     <div class="contact_text">
                         <span>Address</span>
-                        <p>123 Street, Old Trafford, London, UK</p>
+                        <p>111  Pawsomw Street, Singapore 123456</p>
                     </div>
                 </div>
             </div>
@@ -255,7 +180,7 @@
                     </div>
                     <div class="contact_text">
                         <span>Email Address</span>
-                        <a href="mailto:sales@petpurely.pets">sales@petpurely.pets</a>
+                        <a href="mailto:sales@petpurely.pets">info@petpurely.pets</a>
                     </div>
                 </div>
             </div>
@@ -266,7 +191,7 @@
                     </div>
                     <div class="contact_text">
                         <span>Phone</span>
-                        <p>+ 457 789 789 65</p>
+                        <p>+65 1234 5678</p>
                     </div>
                 </div>
             </div>
@@ -376,7 +301,8 @@
         <ul class="contact_info contact_info_light">
             <li>
                 <i class="ti-location-pin"></i>
-                <p>123 Street, Old Trafford, New South London , UK</p>
+                <!--<p>123 Street, Old Trafford, New South London , UK</p>-->
+                <p>111 Pawsome Street, Singapore 123456</p>
             </li>
             <li>
                 <i class="ti-email"></i>
@@ -384,7 +310,7 @@
             </li>
             <li>
                 <i class="ti-mobile"></i>
-                <p>+ 457 789 789 65</p>
+                <p>+65 1234 5678</p>
             </li>
             <l1>
                 <ul class="widget_links">
