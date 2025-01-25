@@ -85,4 +85,3 @@ This section lists all the FrontEnd and BackEnd Development Framework, Database 
 |        Raizal         |    Application Tester       |
 
 
-### Update of README in progress.

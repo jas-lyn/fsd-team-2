@@ -12,10 +12,11 @@
        <meta charset="UTF-8" />
        <title>Add New Product</title>
        <!-- Bootstrap 5 CSS -->
-       <link
-         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-         rel="stylesheet"
-       />
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+       <!-- Favicon Icon -->
+       <link rel="shortcut icon" type="image/x-icon" href="./assets/images/petperks_favicon.png">
+  
        <style>
          body {
            padding: 2rem;
@@ -115,15 +116,13 @@
            />
          </div>
          <div class="col-md-4 d-flex align-items-end">
-           <button
-             type="button"
-             class="btn btn-primary w-100"
-             id="saveBtn"
-           >
-             Save
-           </button>
-         </div>
-       </form>
+           <button type="button" class="btn btn-primary w-100" id="saveBtn" onclick="createNewProduct(event);">Save Product</button>
+         
+          </div>
+          <!-- Alert Placeholder (For displaying BootStrap Alert Messages) -->
+          <div id="alertPlaceholder"></div>
+       
+        </form>
      
        <!-- Optional link to return to the Product Details page -->
        <a href="./admin-account1.html" class="btn btn-secondary">Back to Dashboard</a>
@@ -134,9 +133,12 @@
        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
      ></script>
      
+     <!-- Customized Javascript -->
+     <script src="./assets/js/pets_scripts.js"></script>
+
      <script>
      // Grab references
-     const saveBtn = document.getElementById("saveBtn");
+     /*const saveBtn = document.getElementById("saveBtn");
      const successAlert = document.getElementById("successAlert");
      
      // On save button click, we store the new record in localStorage
@@ -184,7 +186,7 @@
      
        // Optionally, clear the form
        document.getElementById("addProductForm").reset();
-     });
+     }); */
      </script>
      </body>
      </html>

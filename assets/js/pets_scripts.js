@@ -19,10 +19,10 @@ const currentDateTime = now.toLocaleString();
 let day = weekday[d.getDay()]; // Requests for service to determine and retrieve the current weekday.
 
 // [USER ACCOUNT]
-// ---------------
+// --------------- 
 let name = "";
 let email = "";
-let password = "";
+let password = ""; 
 
 // [PRODUCTS]
 // ----------
@@ -72,7 +72,7 @@ function getSignUpName()
   // Objective: Receives the provided signup name information data.
   // ---------------------------------------------------------------
      let _signUpName = document.getElementById("txtSignUpName").value;
-     window.localStorage.setItem("signUpName", _signUpName); // Stores the login name.
+     window.localStorage.setItem("signUpName", _signUpName); // Stores the signup name.
 } // End of function getSignUpName()
 
 function getLoginEmail() 
@@ -111,23 +111,20 @@ function getSignUpPassword()
      window.localStorage.setItem("signUpPassword", _signUpPassword); // Stores the signUp password.
 } // End of function getSignUpPassword()
 
+function getSignUpMobileContact() 
+{
+  // Objective: Receives the provided mobile contact information data.
+  // ------------------------------------------------------------------
+      let _signUpMobileContact = document.getElementById("txtSignUpMobileContact").value;
+      window.localStorage.setItem("signUpMobileContact", _signUpMobileContact); // Stores the signUp mobile contact.
+} // End of function function getSignUpMobileContact()
+
 function getContact() 
 {
   // Objective: Receives the provided contact information data.
   // ----------------------------------------------------------
      name = document.getElementById("txtProfileContact").value;
 } // End of function function getContact() 
-
-function displayRegInfo()
-{
-   // Objective: Displays user's registered email and password information
-   // ----------------------------------------------------------------------
-   
-      window.localStorage.setItem("user-email",email);  // User's Email
-      window.localStorage.setItem("user-password",password); // User's Password
-
-      window.location.href = "./registerInfo.html";
-} // End of function displayRegInfo()
 
 function displayLoginName()
 {
@@ -216,8 +213,8 @@ function getAdminLoginName()
 {
   // Objective: Receives the provided login name data.
   // -------------------------------------------------
-     let _loginName = document.getElementById("txtAdminLoginName").value;
-     window.localStorage.setItem("loginName",_loginName); // Stores the login name.
+     let _loginAdminName = document.getElementById("txtAdminLoginName").value;
+     window.localStorage.setItem("loginName",_loginAdminName); // Stores the Admin login name.
 
 } // End of function getAdminLoginName
 
@@ -225,16 +222,16 @@ function getAdminSignUpName()
 {
   // Objective: Receives the provided signup name information data.
   // ---------------------------------------------------------------
-     let _signUpName = document.getElementById("txtAdminSignUpName").value;
-     window.localStorage.setItem("signUpName", _signUpName); // Stores the login name.
+     let _signUpAdminName = document.getElementById("txtAdminSignUpName").value;
+     window.localStorage.setItem("signUpAdminName", _signUpAdminName); // Stores the Admin signUp name.
 } // End of function getAdminSignUpName()
 
 function getAdminLoginEmail() 
 {
   // Objective: Receives the provided login email information data.
   // --------------------------------------------------------------
-     let _loginEmail = document.getElementById("txtAdminLoginEmail").value;
-     window.localStorage.setItem("loginEmail",_loginEmail); // Stores the login email.
+     let _loginAdminEmail = document.getElementById("txtLoginEmail").value;
+     window.localStorage.setItem("loginAdminEmail",_loginAdminEmail); // Stores the Admin login email.
 
 } // End of function getAdminLoginEmail()
 
@@ -242,8 +239,8 @@ function getAdminSignUpEmail()
 {
   // Objective: Receives the provided signUp email information data.
   // ---------------------------------------------------------------
-     let _signUpEmail = document.getElementById("txtAdminSignUpEmail").value;
-     window.localStorage.setItem("signUpEmail", _signUpEmail); // Stores the signUp email.
+     let _signUpAdminEmail = document.getElementById("txtAdminSignUpEmail").value;
+     window.localStorage.setItem("signUpAdminEmail", _signUpAdminEmail); // Stores the Admin signUp email.
 
 } // End of function getLoginEmail()
 
@@ -251,8 +248,8 @@ function getAdminLoginPassword()
 {    
   // Objective: Receives the provided login password information data.
   // ------------------------------------------------------------------
-     let _loginPassword = document.getElementById("txtAdminPassword").value;
-     window.localStorage.setItem("loginPassword",_loginPassword); // Stores the login password.
+     let _loginAdminPassword = document.getElementById("txtAdminPassword").value;
+     window.localStorage.setItem("loginPassword",_loginAdminPassword); // Stores the Admin login password.
 
 } // End of function getAdminLoginPassword()
 
@@ -260,16 +257,17 @@ function getAdminSignUpPassword()
 {    
   // Objective: Receives the provided signup password information data.
   // ------------------------------------------------------------------
-     let _signUpPassword = document.getElementById("txtAdminSignUpPassword").value;
-     window.localStorage.setItem("signUpPassword", _signUpPassword); // Stores the signUp password.
+     let _signUpAdminPassword = document.getElementById("txtAdminSignUpPassword").value;
+     window.localStorage.setItem("signUpAdminPassword", _signUpAdminPassword); // Stores the Admin signUp password.
 } // End of function getAdminSignUpPassword()
 
-function getAdminContact() 
+function getAdminSignUpMobileContact() 
 {
   // Objective: Receives the provided contact information data.
   // ----------------------------------------------------------
-     name = document.getElementById("txtAdminProfileContact").value;
-} // End of function function getAdminContact() 
+     let _signUpAdminMobileContact = document.getElementById("txtSignUpAdminMobileContact").value;
+     window.localStorage.setItem("signUpAdminMobileContact", _signUpAdminMobileContact); // Stores the Admin signUp mobile contact.
+} // End of function function getAdminMobileContact()
 
 function displayAdminLoginName()
 {
@@ -329,19 +327,19 @@ function displayAdminProfileName()
 function verify_admin_signIn()
 {
  // Objective: For verification of the provided crentials. (Administrator Mode)
- // -------------------------------------------------------
+ // ------------------------------------------------------------------------------
 
   let signInUsername = window.localStorage.getItem("loginName");
   let signInPassword = window.localStorage.getItem("loginPassword");
-    
- if((signInUsername === "admin") && (signInPassword === "Admin@1234"))
- {
-   window.location.href = "./loginAdminSuccess.html";
- }
- else
- {
-   window.location.href = "./loginAdminFailed.html";
- } // End of if-else statement
+
+  if((signInUsername === "admin") && (signInPassword === "Admin@1234"))
+  {
+    window.location.href = "./loginAdminSuccess.html";
+  }
+  else
+  {
+    window.location.href = "./loginAdminFailed.html";
+  } // End of if-else statement
 
 } // End of function verify_admin_signIn()
 
@@ -484,10 +482,145 @@ function dashboardRoute(profileUser)
 
 } // End of function dashboardRoute(profileUser)
 
-// Other User Account Management Function Here
-// --------------------------------------------
+function showAlert(type, message) 
+{
+  const alertPlaceholder = document.getElementById("alertPlaceholder");
+  const alertDiv = document.createElement("div"); // Create the alert div
+ 
+  alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+  alertDiv.setAttribute("role", "alert");
+  
+  alertDiv.innerHTML = `
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  `;
+  // Clear any previous alert, then append the new alert
+  
+  alertPlaceholder.innerHTML = "";
+  alertPlaceholder.appendChild(alertDiv);
+} // End of function showAlert(type, message)
+
+function registerUser(event) 
+{
+// Objective: For the registration of normal user - (i.e. Customer)
+// -----------------------------------------------------------------
+   event.preventDefault(); // prevent form submission from reloading the page
+ 
+  // Build payload
+  // --------------
+     const name = window.localStorage.getItem("signUpName"); // Signup Name
+     const email = window.localStorage.getItem("signUpEmail"); // Signup Email
+     const contact = window.localStorage.getItem("signUpMobileContact"); // Signup Mobile Contact
+     const password = window.localStorage.getItem("signUpPassword");  // Sign-up Password
+
+   // Get form values
+   // ----------------
+      const data = {
+      name: name,
+      email: email,
+      contact: contact,
+      password: password,
+      role: "customer"
+    };
+
+  // Send POST request to the backend
+  fetch("http://localhost:8080/api/customers/register", 
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    return response.json();
+  })
+  .then((result) => {
+    // Registration succeeded
+    showAlert("success", "Registration successful!");
+
+  })
+  .catch((error) => {
+    // Registration failed
+    console.error("Error:", error);
+    showAlert("danger", "Registration failed! Please try again.");
+  });
+
+  setTimeout(() => {
+
+    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+
+     // Optionally clear form
+     document.getElementById("registrationForm").reset();
+
+    }, 3000); 
+
+} // End of function registerUser(event) 
+
+function registerAdmin(event) 
+{
+// Objective: For the registration of administrator user
+// ------------------------------------------------------
+   event.preventDefault(); // prevent form submission from reloading the page
+ 
+  // Build payload
+  // --------------
+     const name = window.localStorage.getItem("signUpAdminName"); // Signup Name
+     const email = window.localStorage.getItem("signUpAdminEmail"); // Signup Email
+     const contact = window.localStorage.getItem("signUpAdminMobileContact"); // Signup Mobile Contact
+     const password = window.localStorage.getItem("signUpAdminPassword");  // Sign-up Password
 
 
+    // Get form values
+    // ----------------
+       const data = {
+       name: name,
+       email: email,
+       contact: contact,
+       password: password,
+       role: "administrator"
+    }; 
+  
+    
+  // Send POST request to the backend
+  fetch("http://localhost:8080/api/customers/register", 
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    return response.json();
+  })
+  .then((result) => {
+    // Registration succeeded
+    showAlert("success", "Registration successful!");
+
+  })
+  .catch((error) => {
+    // Registration failed
+    console.error("Error:", error);
+    showAlert("danger", "Registration failed! Please try again.");
+  });
+
+  setTimeout(() => {
+
+    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+
+     // Optionally clear form
+     document.getElementById("registrationForm").reset();
+
+    }, 3000); 
+
+} // End of function registerUser(event) 
 
 // *********************************************
 // * PRODUCTS PURCHASE EVENT HANDLING ROUTINES *
@@ -1626,6 +1759,142 @@ function displayShoppingCart()  // Targets Add to Cart page
     
   } // End of function updateCheckout()
 
+  // Other Products-related Event Handlers here
+  // -------------------------------------------
+  function createNewProduct(event) 
+  {
+
+// Objective: For the registration of normal user - (i.e. Customer)
+// -----------------------------------------------------------------
+   event.preventDefault(); // prevent form submission from reloading the page
+ 
+  // Build payload
+  // --------------
+     const image = document.getElementById("productImage").value; // Product's image
+     const sku = document.getElementById("productSKU").value; // Product's SKU
+     const name = document.getElementById("productName").value; // Product's name
+     const description = document.getElementById("productDescription").value; // Product's description
+     const category = document.getElementById("productCategory").value; // Product's category
+     const weight = document.getElementById("productWeight").value; // Product's weight
+     const price = document.getElementById("productPrice").value; // Product's price
+     const supplier = document.getElementById("productSupplier").value; // Product's supplier
+    
+   // Get form values
+   // ----------------
+      const data = {
+      image: image,
+      sku: sku,
+      name: name,
+      description: description,
+      category: category,
+      weight: weight,
+      price: price,
+      supplier: supplier,
+    };
+
+  // Send POST request to the backend
+  fetch("http://localhost:8080/api/products/createNew", 
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    return response.json();
+  })
+  .then((result) => {
+    // Registration succeeded
+    showAlert("success", "New Product Created Successful!");
+
+  })
+  .catch((error) => {
+    // Registration failed
+    console.error("Error:", error);
+    showAlert("danger", "New Product Creation Failed! Please try again.");
+  });
+
+  setTimeout(() => {
+
+    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+
+     // Optionally clear form
+     document.getElementById("addProductForm").reset();
+
+    }, 3000);  
+
+} // End of function createNewProduct(event) 
+
+function createNewCategory(event) 
+{
+// Objective: For handling the event of a new product category creation
+// ---------------------------------------------------------------------
+
+ //  alert("New Product Category Information Successfully Created!!" );
+    
+// Objective: For the registration of normal user - (i.e. Customer)
+// -----------------------------------------------------------------
+   event.preventDefault(); // prevent form submission from reloading the page
+ 
+  // Build payload
+  // --------------
+     const name = document.getElementById("categoryName").value; // Product category's name
+     const description = document.getElementById("categoryDescription").value; // PRoduct category's description
+     const status = document.getElementById("categoryStatus").value; // Product category's availability status
+     
+   // Get form values
+   // ----------------
+      const data = {
+      name: name,
+      description: description,
+      status: status
+    };
+
+  // Send POST request to the backend
+  fetch("http://localhost:8080/api/categories/createNew", 
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    return response.json();
+  })
+  .then((result) => {
+    // Registration succeeded
+    showAlert("success", "New Product Category Crearted Successful!");
+
+  })
+  .catch((error) => {
+    // Registration failed
+    console.error("Error:", error);
+    showAlert("danger", "New Product Category Creation Failed! Please try again.");
+  });
+
+  setTimeout(() => {
+
+    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+
+     // Optionally clear form
+     document.getElementById("addCategoryForm").reset();
+
+    }, 3000); 
+
+} // End of function createNewCategory(event) 
+
+  // ********************************************
+  // * PRODUCTS PURCHASE TRANSACTION MANAGEMENT *
+  // ********************************************
+
   // ******************************
   // * ACCOUNTS PROFILE DASHBOARD *
   // ******************************
@@ -1734,6 +2003,4 @@ function displayShoppingCart()  // Targets Add to Cart page
 
   } // End of function deleteProduct()
 
-  // ********************************************
-  // * PRODUCTS PURCHASE TRANSACTION MANAGEMENT *
-  // ********************************************
+  
