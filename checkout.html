@@ -61,9 +61,12 @@
 
 <!-- End of Cascading Style Sheet -->
 
+<!-- Reference Notes -->
+<!-- https://www.dofactory.com/html/button/hidden -->
+
 </head>
 
-<body onload="updateCheckout();getLoginStatus();displayLoginName();">
+<body onload="updateCheckout();">
 
 <!-- LOADER -->
 <div class="preloader">
@@ -88,8 +91,8 @@
                 
                 <!-- START HEADER LOGO --> 
                 <div class="navbar-brand mx-auto">
-                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
-                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';" />
+                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';"/>
                 </div>
                 <!-- End of HEADER LOGO --> 
                 
@@ -162,6 +165,7 @@
                     <li class="breadcrumb-item active">Checkout</li>
                 </ol>
             </div>
+            <div class="text-end text-decoration-underline pt-4"><a href="./addToCart.html">View Cart</a></div>
         </div>
     </div><!-- END CONTAINER-->
 </div>
@@ -831,6 +835,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <!-- Product Name -->
                                     <th>Product</th>
                                     <th>Total</th>
                                 </tr>
@@ -841,19 +846,28 @@
                                     <td id="tblCheckoutProductPrice">$90.00</td>
                                 </tr>
                                 <tr>
+                                    <!-- SKU -->
+                                    <th>SKU</th>
+                                    <td id="tblCheckoutProductSKU">XXXX</td>
+                                </tr>
+                                <tr>
+                                    <!-- Quantity -->
                                     <th>Quantity</th>
                                     <td id="tblCheckoutProductQuantity"></td>
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <th>SubTotal</th>
+                                <tr> 
+                                    <!-- Sub-Total-->
+                                    <th>Sub-Total:</th>
                                     <td class="product-subtotal" id="tblCheckoutSubTotal">$349.00</td>
                                 </tr>
                                 <tr>
+                                    <!-- Shipping -->
                                     <th>Shipping</th>
                                     <td>Free Shipping</td>
                                 </tr>
+                                    <!--Total (Payment Amount)-->
                                 <tr>
                                     <th>Total</th>
                                     <td class="product-subtotal" id="tblCheckoutGrandTotal">$349.00</td>
@@ -868,12 +882,12 @@
                         <div class="payment_option">
                             <div class="custome-radio">
                                 <input class="form-check-input" required="" type="radio" name="payment_option" id="exampleRadios3" value="option3" checked="">
-                                <label class="form-check-label" for="exampleRadios3">Direct Bank Transfer</label>
+                                <label class="form-check-label" for="exampleRadios3" onclick="displayUnavailableFunctionMessage();">Direct Bank Transfer</label>
                                 <p data-method="option3" class="payment-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration. </p>
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
-                                <label class="form-check-label" for="exampleRadios4">Check Payment</label>
+                                <label class="form-check-label" for="exampleRadios4" onclick="displayUnavailableFunctionMessage();"">Check Payment</label>
                                 <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                             </div>
                             <div class="custome-radio">
@@ -883,7 +897,8 @@
                             </div>
                         </div>
                     </div>
-                    <a href="./orderCompleted.html" class="btn btn-fill-out btn-block">Place Order</a>
+                    <!--<a href="./orderCompleted.html" class="btn btn-fill-out btn-block">Place Order</a>-->
+                    <a href="#" class="btn btn-fill-out btn-block" onclick="createOrders(event);">Place Order</a>
                 </div>
             </div>
         </div>
@@ -944,7 +959,7 @@
                         <ul class="contact_info contact_info_light">
                             <li>
                                 <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, New South London , UK</p>
+                                <p>111 Pawsome Street, Singapore 123456</p>
                             </li>
                             <li>
                                 <i class="ti-email"></i>
