@@ -1,4 +1,3 @@
-
 // ************************************************************************************************************
 // * Filename: pets_script.js                                                                                 *
 // * Objective: Provides the functionality to support the entire website event handling operations.           *
@@ -183,16 +182,17 @@ function displayProfileName()
       document.getElementById("productLink").removeAttribute("enabled","");
       document.getElementById("productLink").setAttribute("disabled",""); // Disables the Product Hyperlink.
             
-
     } // End of if-else statement
    
 } // End of function displayProfileName()
 
-function verify_signIn()
+function verify_signIn(event)
 {
  // Objective: For verification of the provided crentials. (Customer Mode)
  // -------------------------------------------------------
 
+  /*  PREVIOUS OLD CODE 
+  
     let signInUsername = window.localStorage.getItem("loginName");
     let signInPassword = window.localStorage.getItem("loginPassword");
     
@@ -203,7 +203,85 @@ function verify_signIn()
     else
     { 
       window.location.href="./loginFailed.html";
-    } // End of if-else statement
+    } // End of if-else statement */
+
+    // document.getElementById("loginForm").addEventListener("submit", function(e) {
+      event.preventDefault();
+      
+      const email = window.localStorage.getItem("loginName"); // Retrieves the login email.
+      const password = window.localStorage.getItem("loginPassword"); // Retrieves the login password.
+      
+      const loginData = 
+      {
+        email: email,
+        password: password
+      };
+      
+      fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+      })
+      .then(response => {
+        if (response.ok) {
+          // On success, server returns JSON: { "message": "...", "role": "..." }
+          return response.json();
+        } else {
+          // On error, server returns plain text (e.g., "Invalid credentials!")
+          return response.text().then(errorText => {
+            throw new Error(errorText);
+          });
+        }
+      })
+      .then(data => {
+        // data.message, data.role
+        document.getElementById("loginMessage").innerHTML = `
+          <div class="alert alert-success" role="alert">
+            ${data.message} <br />
+            Welcome, <strong>${data.role}</strong>!
+          </div>
+        `;
+  
+        window.localStorage.setItem("role", `${data.role}`);
+       
+       // Alert Message Clearing Routine
+       // --------------------------------
+         setTimeout(() => {
+
+        document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+  
+       // Optionally clear form
+       document.getElementById("loginForm").reset();
+       window.localStorage.setItem("_loginState","success");
+       updateLoginStatus("success");
+  
+      }, 3000); 
+   
+        // Optionally redirect after a short delay:
+        // setTimeout(() => { window.location.href = "/home.html"; }, 2000);
+      })
+      .catch(error => {
+        // If we get here, it's an error scenario
+        document.getElementById("loginMessage").innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            ${error.message}
+          </div>
+        `;
+      });
+   // });
+
+    // Alert Message Clearing Routine
+    // --------------------------------
+     setTimeout(() => {
+
+    document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+
+     // Optionally clear form to prepare for re-entry
+     document.getElementById("loginForm").reset();
+    
+    }, 3000); 
 
 } // End of function verify_signIn()
 
@@ -329,7 +407,7 @@ function verify_admin_signIn()
  // Objective: For verification of the provided crentials. (Administrator Mode)
  // ------------------------------------------------------------------------------
 
-  let signInUsername = window.localStorage.getItem("loginName");
+  /*let signInUsername = window.localStorage.getItem("loginName");
   let signInPassword = window.localStorage.getItem("loginPassword");
 
   if((signInUsername === "admin") && (signInPassword === "Admin@1234"))
@@ -339,8 +417,85 @@ function verify_admin_signIn()
   else
   {
     window.location.href = "./loginAdminFailed.html";
-  } // End of if-else statement
+  } // End of if-else statement*/
 
+  event.preventDefault();
+      
+  const email = window.localStorage.getItem("loginName"); // Retrieves the login email.
+  const password = window.localStorage.getItem("loginPassword"); // Retrieves the login password.
+  
+  const loginData = 
+  {
+    email: email,
+    password: password
+  };
+  
+  fetch("http://localhost:8080/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(loginData)
+  })
+  .then(response => {
+    if (response.ok) {
+      // On success, server returns JSON: { "message": "...", "role": "..." }
+      return response.json();
+    } else {
+      // On error, server returns plain text (e.g., "Invalid credentials!")
+      return response.text().then(errorText => {
+        throw new Error(errorText);
+      });
+    }
+  })
+  .then(data => {
+    // data.message, data.role
+    document.getElementById("loginMessage").innerHTML = `
+      <div class="alert alert-success" role="alert">
+        ${data.message} <br />
+        Welcome, <strong>${data.role}</strong>!
+      </div>
+    `;
+
+    window.localStorage.setItem("role", `${data.role}`);
+    window.localStorage.setItem("loginName", `${data.role}`);
+   
+    // Alert Message Clearing Routine
+    // --------------------------------
+       setTimeout(() => {
+
+        document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+  
+       // Optionally clear form for re-entry
+       document.getElementById("loginForm").reset();
+       window.localStorage.setItem("_loginState","success");
+       updateLoginStatus("success");
+  
+      }, 3000); 
+
+    // Optionally redirect after a short delay:
+    // setTimeout(() => { window.location.href = "/home.html"; }, 2000);
+  })
+  .catch(error => {
+    // If we get here, it's an error scenario
+    document.getElementById("loginMessage").innerHTML = `
+      <div class="alert alert-danger" role="alert">
+        ${error.message}
+      </div>
+    `;
+  });
+
+   // Alert Message Clearing Routine
+    // --------------------------------
+    setTimeout(() => {
+
+      document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+  
+       // Optionally clear form
+       document.getElementById("loginForm").reset();
+  
+      }, 3000); 
+  
 } // End of function verify_admin_signIn()
 
 function updateLoginLogoutState(profileName)
@@ -504,11 +659,11 @@ function registerUser(event)
 {
 // Objective: For the registration of normal user - (i.e. Customer)
 // -----------------------------------------------------------------
-   event.preventDefault(); // prevent form submission from reloading the page
+   // event.preventDefault(); // prevent form submission from reloading the page
  
   // Build payload
   // --------------
-     const name = window.localStorage.getItem("signUpName"); // Signup Name
+ /*  const name = window.localStorage.getItem("signUpName"); // Signup Name
      const email = window.localStorage.getItem("signUpEmail"); // Signup Email
      const contact = window.localStorage.getItem("signUpMobileContact"); // Signup Mobile Contact
      const password = window.localStorage.getItem("signUpPassword");  // Sign-up Password
@@ -547,11 +702,68 @@ function registerUser(event)
     // Registration failed
     console.error("Error:", error);
     showAlert("danger", "Registration failed! Please try again.");
-  });
+  }); */
 
+   // JS to handle the sign-up
+  // document.getElementById("registrationForm").addEventListener("submit", function(e)
+  // {
+    event.preventDefault();
+    
+    const name = window.localStorage.getItem("signUpName"); // Signup Name
+    const email = window.localStorage.getItem("signUpEmail"); // Signup Email
+    const contact = window.localStorage.getItem("signUpMobileContact"); // Signup Mobile Contact
+    const password = window.localStorage.getItem("signUpPassword");  // Sign-up Password
+    const role = "customer"; // Customer Role (Default)
+    
+    // Prepare the payload
+    const signupData = {
+        name: name,
+        email: email,
+        contact: contact,
+        password: password,
+        role: role
+    };
+    
+    fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(signupData)
+    })
+    .then(async response => {
+        const responseText = await response.text();
+        
+        if (response.ok) {
+            // success
+            document.getElementById("signupMessage").innerHTML = `
+              <div class="alert alert-success" role="alert">
+                ${responseText}
+              </div>
+            `;
+        } else {
+            // error
+            document.getElementById("signupMessage").innerHTML = `
+              <div class="alert alert-danger" role="alert">
+                ${responseText}
+              </div>
+            `;
+        }
+    })
+    .catch(error => {
+        document.getElementById("signupMessage").innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Error: ${error}
+          </div>
+        `;
+    });
+// });
+
+// Alert Message Clearing Routine
+// --------------------------------
   setTimeout(() => {
 
-    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+    document.getElementById("signupMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
 
      // Optionally clear form
      document.getElementById("registrationForm").reset();
@@ -566,54 +778,59 @@ function registerAdmin(event)
 // ------------------------------------------------------
    event.preventDefault(); // prevent form submission from reloading the page
  
-  // Build payload
-  // --------------
-     const name = window.localStorage.getItem("signUpAdminName"); // Signup Name
-     const email = window.localStorage.getItem("signUpAdminEmail"); // Signup Email
-     const contact = window.localStorage.getItem("signUpAdminMobileContact"); // Signup Mobile Contact
-     const password = window.localStorage.getItem("signUpAdminPassword");  // Sign-up Password
-
-
-    // Get form values
-    // ----------------
-       const data = {
-       name: name,
-       email: email,
-       contact: contact,
-       password: password,
-       role: "administrator"
-    }; 
-  
+   const name = window.localStorage.getItem("signUpAdminName"); // Signup Name
+    const email = window.localStorage.getItem("signUpAdminEmail"); // Signup Email
+    const contact = window.localStorage.getItem("signUpAdminMobileContact"); // Signup Mobile Contact
+    const password = window.localStorage.getItem("signUpAdminPassword");  // Sign-up Password
+    const role = "administrator"; // Customer Role (Default)
     
-  // Send POST request to the backend
-  fetch("http://localhost:8080/api/customers/register", 
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not OK");
-    }
-    return response.json();
-  })
-  .then((result) => {
-    // Registration succeeded
-    showAlert("success", "Registration successful!");
-
-  })
-  .catch((error) => {
-    // Registration failed
-    console.error("Error:", error);
-    showAlert("danger", "Registration failed! Please try again.");
-  });
+    // Prepare the payload
+    const signupData = {
+        name: name,
+        email: email,
+        contact: contact,
+        password: password,
+        role: role
+    };
+    
+    fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(signupData)
+    })
+    .then(async response => {
+        const responseText = await response.text();
+        
+        if (response.ok) {
+            // success
+            document.getElementById("signupMessage").innerHTML = `
+              <div class="alert alert-success" role="alert">
+                ${responseText}
+              </div>
+            `;
+        } else {
+            // error
+            document.getElementById("signupMessage").innerHTML = `
+              <div class="alert alert-danger" role="alert">
+                ${responseText}
+              </div>
+            `;
+        }
+    })
+    .catch(error => {
+        document.getElementById("signupMessage").innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Error: ${error}
+          </div>
+        `;
+    });
+// });
 
   setTimeout(() => {
 
-    alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+    document.getElementById("signupMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
 
      // Optionally clear form
      document.getElementById("registrationForm").reset();
@@ -661,6 +878,13 @@ function displayWishListMessage()
 
    alert("Your selected product item has been added to the Wishlist Successsully. ");
 } // End of function displayWishListMessage()
+
+function displayUnavailableFunctionMessage()
+{
+// Objective: As an indicative message to inform users that the feature is currently still under development.
+
+alert("Sorry, this feature is still under development. Please visit us again.");
+}  // End of function displayUnavailableFunctionMessage()
 
 // First Product
 //---------------
@@ -1615,7 +1839,7 @@ function updateProductDetails()
  // Objective: Update the selected product with the detailed information
  // ---------------------------------------------------------------------
 
-    let productSelected = window.localStorage.getItem("productSelected");
+    let productSelected = window.localStorage.getItem("productSelected"); // Selected Product Index
 
     if(productSelected === "firstProduct") // First Product
     {
@@ -1683,8 +1907,6 @@ function updateProductDetails()
    document.querySelector("#prodGA3").innerText = window.localStorage.getItem("prodGA3"); // Product Gauranteed Analysis #3
    document.querySelector("#prodGA4").innerText = window.localStorage.getItem("prodGA4"); // Product Gauranteed Analysis #4
 
-   
-   
 } // End of const updateProductDetails =()
 
 function displayShoppingCart()  // Targets Add to Cart page
@@ -1731,8 +1953,9 @@ function displayShoppingCart()  // Targets Add to Cart page
       } // End of if-else statement
 
       prod_total_cost = (prod_quantity * prod_price);
+      prod_sub_total_cost = prod_total_cost.toFixed(2).toString();
       prod_total_cost = "$" + prod_total_cost.toFixed(2).toString();
-
+     
       document.querySelector("#tblProductTotalCost").innerText = prod_total_cost;
       document.querySelector("#lblCartSubTotal").innerText = document.querySelector("#tblProductTotalCost").innerText;
       document.querySelector("#lblCartGrandTotal").innerText = document.querySelector("#tblProductTotalCost").innerText;
@@ -1741,7 +1964,8 @@ function displayShoppingCart()  // Targets Add to Cart page
      // ------------------------------------------------------
         window.localStorage.setItem("prodQuantity", prod_quantity); // Quantity
         window.localStorage.setItem("prodGrandTotal", prod_total_cost); // Grand-Total
-
+        window.localStorage.setItem("prodSubTotal", prod_sub_total_cost);
+       
   } // End of function updateShoppingCart()
 
   function updateCheckout()
@@ -1754,8 +1978,9 @@ function displayShoppingCart()  // Targets Add to Cart page
     document.querySelector("#tblCheckoutProductQuantity").innerText = window.localStorage.getItem("prodQuantity"); // Product Quantity
     document.querySelector("#tblCheckoutProductQuantity").innerText = document.querySelector("#tblCheckoutProductQuantity").innerText + " x";
     document.querySelector("#tblCheckoutProductPrice").innerText = window.localStorage.getItem("prodGrandTotal"); // Product Grand Total
-    document.querySelector("#tblCheckoutSubTotal").innerText = window.localStorage.getItem("prodGrandTotal"); 
-    document.querySelector("#tblCheckoutGrandTotal").innerText = window.localStorage.getItem("prodGrandTotal");
+    document.querySelector("#tblCheckoutSubTotal").innerText = window.localStorage.getItem("prodGrandTotal"); // Product Sub-Total
+    document.querySelector("#tblCheckoutGrandTotal").innerText = window.localStorage.getItem("prodGrandTotal"); // Product Grand-Total
+    document.querySelector("#tblCheckoutProductSKU").innerText = window.localStorage.getItem("prodSKU"); // Product SKU
     
   } // End of function updateCheckout()
 
@@ -1894,6 +2119,112 @@ function createNewCategory(event)
   // ********************************************
   // * PRODUCTS PURCHASE TRANSACTION MANAGEMENT *
   // ********************************************
+  function createOrders(event)
+  {
+    // Objective: For the registration of normal user - (i.e. Customer)
+    // -----------------------------------------------------------------
+   
+        event.preventDefault(); // prevent form submission from reloading the page
+ 
+   // Build payload
+   // --------------
+      const name = window.localStorage.getItem("prodName"); // Product's name
+      const sku = window.localStorage.getItem("prodSKU"); // Product's sku
+      const quantity = window.localStorage.getItem("prodQuantity"); // Product's purchase quantity
+      const amount = window.localStorage.getItem("prodGrandTotal"); // Product's total purchase amount.
+
+    // Get form values
+    // ----------------
+       const data = {
+       name: name,
+       sku: sku,
+       quantity: quantity,
+       amount: amount
+     };
+ 
+   // Send POST request to the backend
+   fetch("http://localhost:8080/api/orders/createNew",  // New Order REST API Endpoint URL
+   {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(data),
+   })
+   .then((response) => {
+     if (!response.ok) {
+       throw new Error("Network response was not OK");
+     }
+     return response.json();
+   })
+   .then((result) => {
+     // Registration succeeded
+    // showAlert("success", "New Purchase Order Created Successful!");
+     alert("New Purchase Order Created Successful!");
+
+     setTimeout(() => {
+
+    //  alertPlaceholder.innerHTML = ""; // Auto-hide alert after 3 seconds
+  
+    // Optionally clear form
+     //  document.getElementById("addCategoryForm").reset();
+
+      createNewTransaction(); // Creates a new (Stripe) Payment Transaction record in Test Mode Environment.
+     // window.location.href = "../../orderCompleted.html";
+  
+      }, 1000); 
+  
+   })
+   .catch((error) => {
+     // Registration failed
+     console.error("Error:", error);
+     // showAlert("danger", "Error in your Purchase. Please consult the Support.");
+     alert("Error in your Purchase. Please consult the Support");
+   });
+ 
+  } // End of function createOrders(event)
+
+  function createNewTransaction()
+  {
+    // Objective: For the creation of new payment transaction record in Stripe Test Mode Environment
+    // ----------------------------------------------------------------------------------------------
+        // When the "Add to Cart" button is clicked, POST product info to Spring Boot
+        
+        //  e.preventDefault();
+      
+      // Here we assume your product has a price in cents (120.00 => 12000)
+      // const name = document.getElementById("productTitle").textContent.trim();
+         const name = window.localStorage.getItem("prodName"); // Product Name
+         const quantity = parseInt(window.localStorage.getItem("prodQuantity")); // Product Purchased Quantity
+         const amount = parseFloat(window.localStorage.getItem("prodSubTotal")); // Product Purchased Payment Amount
+
+      // Build the data object that matches your PaymentRequest DTO
+      const data = {
+        productName: name,
+        quantity: quantity,
+        price: ((amount*100.00)/quantity)
+      };
+
+      // Send POST request to your Spring Boot backend
+      fetch("http://localhost:8080/api/transaction/createPayment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.text())
+        .then(result => {
+          console.log("Payment response:", result);
+          alert("Payment response: " + result);
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("Error: " + error);
+        });
+   
+    //  });
+  } // End of function createNewTransaction(event)
 
   // ******************************
   // * ACCOUNTS PROFILE DASHBOARD *

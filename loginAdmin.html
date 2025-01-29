@@ -50,7 +50,7 @@
 
 </head>
 
-<body onload="displayEmptyCart();">
+<body>
 
 <!-- LOADER -->
 <div class="preloader">
@@ -75,8 +75,8 @@
                 
                 <!-- START HEADER LOGO --> 
                 <div class="navbar-brand mx-auto">
-                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
-                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" />
+                    <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';"/>
+                    <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';"/>
                 </div>
                 <!-- End of HEADER LOGO --> 
                 
@@ -141,6 +141,7 @@
                 <div class="page-title">
             		<h1>Login</h1>
                 </div>
+
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb justify-content-md-end">
@@ -167,7 +168,7 @@
                         <div class="heading_s1">
                             <h3>Login (Administrator)</h3>
                         </div>
-                        <form method="post">
+                        <form method="post" id="loginForm">
 
                             <!-- Username/Email -->
                             <div class="form-group mb-3">
@@ -181,7 +182,7 @@
 
                             <!-- Sign-In Button -->
                             <div class="form-group mb-3">
-                                <button type="button" class="btn btn-fill-out btn-block login-block" name="login" onclick="verify_admin_signIn();">Log in</button>
+                                <button type="button" class="btn btn-fill-out btn-block login-block" name="login" onclick="verify_admin_signIn(event);">Log in</button>
                             </div>
                         </form>
                 
@@ -189,6 +190,9 @@
                         <div class="form-note text-center">For Customers, click <a href="./login.html" title="Please click here if you a customer/cuser">here</a>.</div>
                         
                     </div>
+
+                      <!-- Where we'll show success/error alerts -->
+                     <div id="loginMessage"></div>
                 </div>
             </div>
         </div>
@@ -259,7 +263,7 @@
                         <ul class="contact_info contact_info_light">
                             <li>
                                 <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, New South London , UK</p>
+                                <p>111 Pawsome Street, Singapore 123456</p>
                             </li>
                             <li>
                                 <i class="ti-email"></i>
