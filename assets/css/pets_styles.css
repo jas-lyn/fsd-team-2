@@ -263,6 +263,20 @@ body
   margin-top: 20px;
 }
 
+thead.table-light
+{
+  --bs-table-bg: #0D92F4;
+  --bs-table-color: #fff;
+}
+
+/******************
+ * PRODUCTS TABLE *
+ *****************/
+ .table-dark /* Overrides the existing Bootstrap Table Header Background Colour */
+    {
+        --bs-table-bg: blue;
+    }  
+
 /****************
  * ORDERS TABLE *
  ****************/
