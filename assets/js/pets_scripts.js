@@ -839,6 +839,201 @@ function registerAdmin(event)
 
 } // End of function registerUser(event) 
 
+// ******************
+// * PRODUCTS TABLE *
+// ******************
+  function displayProductsData()
+  {
+    const BASE_URL = "http://localhost:8080/api/products"; 
+    // Adjust if your Spring Boot runs on a different port or context path
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchProducts();
+    });
+
+    // Fetch and display all products
+    function fetchProducts() {
+      fetch(BASE_URL)
+        .then(response => response.json())
+        .then(data => {
+          populateTable(data);
+        })
+        .catch(error => {
+          showErrorAlert("Error fetching products: " + error);
+        });
+    }
+
+    function populateTable(products) {
+      const tbody = document.querySelector("#productsTable tbody");
+      tbody.innerHTML = ""; // Clear any existing rows
+
+      products.forEach(product => {
+        const row = document.createElement("tr");
+
+        // Store the product ID in a data attribute
+        row.setAttribute("data-productid", product.productsid);
+
+        // For each field, we add a table cell
+        row.innerHTML = `
+          <td class="product-field" data-key="productsid">${product.productsid}</td>
+          <td class="product-field" data-key="category">${product.category || ""}</td>
+          <td class="product-field" data-key="description">${product.description || ""}</td>
+          <td class="product-field" data-key="image">${product.image || ""}</td>
+          <td class="product-field" data-key="name">${product.name || ""}</td>
+          <td class="product-field" data-key="price">${product.price || ""}</td>
+          <td class="product-field" data-key="sku">${product.sku || ""}</td>
+          <td class="product-field" data-key="supplier">${product.supplier || ""}</td>
+          <td class="product-field" data-key="weight">${product.weight || ""}</td>
+          <td>
+          <!--  <button class="btn btn-sm btn-success updateBtn">Update</button>
+            <button class="btn btn-sm btn-danger deleteBtn">Delete</button> -->
+
+            <div class="btn-group" role="group">
+              <button class="btn btn-success btn-sm me-2 updateBtn" style="border-radius:30px;">Update</button>
+              <button class="btn btn-danger btn-sm deleteBtn" style="border-radius:30px;">Delete</button>
+            </div>
+
+          </td>
+        `;
+        
+        // Attach button event listeners
+        const updateBtn = row.querySelector(".updateBtn");
+        const deleteBtn = row.querySelector(".deleteBtn");
+
+        updateBtn.addEventListener("click", () => onUpdateClicked(row, product.productsid));
+        deleteBtn.addEventListener("click", () => onDeleteClicked(product.productsid));
+
+        tbody.appendChild(row);
+      });
+    }
+
+    // Toggle row cells between display mode and edit mode
+    function onUpdateClicked(row, productId) {
+      const updateBtn = row.querySelector(".updateBtn");
+      const isEditing = updateBtn.textContent === "Save";
+
+      if (!isEditing) {
+        // Switch to edit mode
+        updateBtn.textContent = "Save";
+        const fields = row.querySelectorAll(".product-field");
+        fields.forEach(td => {
+          // We don't allow editing the 'productsid' field
+          const key = td.getAttribute("data-key");
+          if (key !== "productsid") {
+            const currentValue = td.textContent;
+            td.innerHTML = `<input class="form-control form-control-sm" type="text" value="${currentValue}" />`;
+          }
+        });
+      } else {
+        // Switch to view mode and perform update
+        updateBtn.textContent = "Update";
+        const productData = {};
+        const fields = row.querySelectorAll(".product-field");
+
+        fields.forEach(td => {
+          const key = td.getAttribute("data-key");
+          if (key === "productsid") {
+            productData.productsid = Number(td.textContent);
+          } else {
+            const input = td.querySelector("input");
+            if (input) {
+              productData[key] = input.value;
+            }
+          }
+        });
+
+        // Convert price to number if needed
+        productData.price = Number(productData.price);
+
+        // Perform PUT request
+        fetch(`${BASE_URL}/${productId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(productData)
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Failed to update product with ID " + productId);
+            }
+            return response.json();
+          })
+          .then(updatedProduct => {
+            // Update row cells with updated product data
+            fields.forEach(td => {
+              const key = td.getAttribute("data-key");
+              if (key === "productsid") {
+                td.textContent = updatedProduct.productsid;
+              } else {
+                td.textContent = updatedProduct[key] || "";
+              }
+            });
+
+            // Show success alert
+            showSuccessAlert(`Product ID ${productId} updated successfully!`);
+          })
+          .catch(error => {
+            showErrorAlert(error.message);
+          });
+      }
+    }
+
+    function onDeleteClicked(productId) 
+    {
+      const confirmDelete = confirm(`Are you sure you want to delete Product ID ${productId}?`);
+      if (!confirmDelete) return;
+
+      fetch(`${BASE_URL}/${productId}`, {
+        method: "DELETE"
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to delete product with ID " + productId);
+          }
+          // Find and remove the row by data attribute
+          const row = document.querySelector(`tr[data-productid="${productId}"]`);
+          if (row) {
+            row.remove();
+          }
+          showSuccessAlert(`Product ID ${productId} deleted successfully!`);
+        })
+        .catch(error => {
+          showErrorAlert(error.message);
+        });
+    } // End of function onDeleteClicked(productId) 
+
+
+    // Utility functions for alerts
+    function showSuccessAlert(message) 
+    {
+      const successAlert = document.getElementById("successAlert");
+      successAlert.textContent = message;
+      successAlert.classList.remove("d-none");
+      // Hide after 3 seconds
+      setTimeout(() => {
+        successAlert.classList.add("d-none");
+      }, 3000); 
+    } // End of function showSuccessAlert(message) 
+
+    function showErrorAlert(message) 
+    {
+      const errorAlert = document.getElementById("errorAlert");
+      errorAlert.textContent = message;
+      errorAlert.classList.remove("d-none");
+      // Hide after 3 seconds
+      setTimeout(() => {
+        errorAlert.classList.add("d-none");
+      }, 3000);
+    } // End of function showErrorAlert(message) 
+
+} // End of function displayProductsData()
+
+// ******************
+// * CATEGORT TABLE *
+// ******************
+
+
 // *********************************************
 // * PRODUCTS PURCHASE EVENT HANDLING ROUTINES *
 // *********************************************
@@ -2272,7 +2467,7 @@ function createNewCategory(event)
   // * ADMINISTRATOR DASHBOARD *
   // ***************************
 
-  function updateCategory()
+/*  function updateCategory()
   {
    // Objective: For updating the current product category's data.
    // ------------------------------------------------------------
@@ -2301,7 +2496,7 @@ function createNewCategory(event)
         alert("No Action Taken.");
       } // End of if-else statement
 
-  } // End of function deleteCategory()
+  } // End of function deleteCategory() */
 
   function updateProduct()
   {
