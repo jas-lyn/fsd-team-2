@@ -71,8 +71,7 @@
           </style>
                         
         </head>
-<!--<body onload="displayLoginName();getLoginStatus();">-->
-<body>
+<body onload="displayLoginName();getLoginStatus();">
 <!-- START HEADER -->
 <header class="header_wrap fixed-top header_with_topbar">
   <div class="bottom_header dark_skin main_menu_uppercase">
@@ -80,8 +79,8 @@
           <nav class="navbar navbar-expand-lg d-flex justify-content-between align-items-center">
               <div class="navbar-nav flex-grow-1 d-flex justify-content-start">
                   <a class="nav-link nav_item" href="./index.html">Home</a>
-                  <a class="nav-link nav_item" href="./about.html">About Us</a>
-                  <a class="nav-link nav_item" href="./contact.html">Contact Us</a>
+                  <a class="nav-link nav_item" href="./about1.html">About Us</a>
+                  <a class="nav-link nav_item" href="./contact1.html">Contact Us</a>
               </div>
               
               <!-- START HEADER LOGO --> 
@@ -93,7 +92,7 @@
               
               <div class="navbar-nav flex-grow-1 d-flex justify-content-end">
                   <div class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="./products.html" id="productsMenu" role="button" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="./products1.html" id="productsMenu" role="button" aria-expanded="false">
                           Products
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="productsMenu">
@@ -136,7 +135,11 @@
                       </ul>
                   </div>
                   <a class="nav-link nav_item" href="#" onclick="alert('Sorry, this feature is still under development.');">Services</a>
-                  <a class="nav-link nav_item" href="./login.html">Login / Signup</a>
+                  <!--<a class="nav-link nav_item" href="./login.html">Login / Signup</a>-->
+                  <ul class="header_list">
+                    <span><img id="account-image" src="./assets/images/accountPicture.png" alt="Avatar" width="30px" height="30px" onclick="window.location.href='./accountDashboard.html'"></span>
+                    <li><a href="#"><!--<i class="ti-user">--></i><span id="lnkLogin" onclick="window.localStorage.clear();window.location.href='./login.html'">Logout</span></a></li>
+                </ul>
               </div>
           </nav>
       </div>
@@ -191,7 +194,7 @@
   </table>  -->
   
   <div class="container-fluid my-2">
-    <h1 class="mb-4">Categories Management</h1>
+    <h3 class="mb-4">Categories</h3>
   
     <!-- Alert placeholders -->
     <div id="alertContainer"></div>
@@ -680,14 +683,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
    <div class="container-fluid">
       <h2 class="text-center">My Orders</h2>
-      <table class="table orders-table">
-          <thead class="text-center">
+
+       <!-- Export Button -->
+       <div>   
+        <button class="btn btn-warning" onclick="exportTableToExcel('ordersTable', 'OrdersData')">
+              Export to Excel
+      </button>
+     </div>
+    <!-- End of Export Button -->
+
+      <table class="table orders-table" id="ordersTable">
+          <thead>
               <tr>
-                  <th>Order ID</th>
-                  <th>Amount</th>
-                  <th>Product Name</th>
-                  <th>Quantity</th>
-                  <th>SKU</th>
+                  <th class="text-center">Order ID</th>
+                  <th class="text-center">SKU</th>
+                  <th class="text-center">Product Name</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-center">Amount ($)</th>           
               </tr>
           </thead>
           <tbody id="ordersTableBody">
@@ -710,11 +722,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                   data.forEach(order => {
                       let row = `<tr>
-                          <td>${order.ordersid}</td>
-                          <td>$${order.amount}</td>
-                          <td>${order.name}</td>
-                          <td>${order.quantity}</td>
-                          <td>${order.sku}</td>
+                          <td class="text-center">${order.ordersid}</td>
+                          <td class="text-center">${order.sku}</td>
+                          <td class="text-center">${order.name}</td>
+                          <td class="text-center">${order.quantity}</td>
+                          <td class="text-center">$${order.amount}</td>
                       </tr>`;
                       ordersTable.innerHTML += row;
                   });
@@ -767,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 	<div class="widget">
                         <h6 class="widget_title">Useful Links</h6>
                         <ul class="widget_links">
-                            <li><a href="./about.html">About Us</a></li>
+                            <li><a href="./about1.html">About Us</a></li>
                             <li><a href="./faq.html">FAQ</a></li>
                             <li><a href="#" onclick="alert('Sorry,this feature is still under development.');">Blog</a></li>
                         </ul>
@@ -864,10 +876,16 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="./assets/js/scripts.js"></script>
 
 <!-- Custom Javascript -->
-<!--<script defer src="./assets/js/pets_scripts.js"></script>-->
+<script defer src="./assets/js/pets_scripts.js"></script>
 
-<!-- End of Javascript -->
+<!-- SheetJS library (via CDN) For Microsoft Excel Data Export Functionality --> 
+<script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"
+  integrity="sha512-x6z... (etc. etc.)"
+  crossorigin="anonymous"
+></script>
 
-  
-   </body>
+<!-- End of Javascript -->  
+   
+</body>
 </html>

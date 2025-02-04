@@ -1,0 +1,1316 @@
+<!-- ***************************************************************************************** 
+     * Filename: products1.html (Logged in User Mode)                                        *
+     * Objective: Displays a list of pets related products with a Load More Option Button.   *
+     * Remarks: Generation SG Full Stack Developer FSD05 Capstone Project                    *
+     * Developer:                                                                            *
+     * Date: 04/12/2024                                                                      *
+     ***************************************************************************************** -->
+
+     <!DOCTYPE public html>
+     <html lang="en">
+     
+     <head>
+     <!-- Meta -->
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="Nature's Whiskers is a pet product supplier dedicated to providing high-quality product for all pets">
+     
+     <!-- SITE TITLE -->
+     <title>PetPurely - BootStrap eCommerce Webstore</title>
+     
+     <!-- Favicon Icon -->
+     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/petperks_favicon.png">
+     
+     <!-- [CASCADING STYLE SHEETS (CSS)] -->
+     
+     <!-- Animation CSS -->
+     <link rel="stylesheet" href="./assets/css/animate.css">	
+     
+     <!-- Latest Bootstrap min CSS -->
+     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+     
+     <!-- Google Font -->
+     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet"> 
+     
+     <!-- Icon Font CSS -->
+     <link rel="stylesheet" href="./assets/css/all.min.css">
+     <link rel="stylesheet" href="./assets/css/ionicons.min.css">
+     <link rel="stylesheet" href="./assets/css/themify-icons.css">
+     <link rel="stylesheet" href="./assets/css/linearicons.css">
+     <link rel="stylesheet" href="./assets/css/flaticon.css">
+     <link rel="stylesheet" href="./assets/css/simple-line-icons.css">
+     
+     <!--- owl carousel CSS-->
+     <link rel="stylesheet" href="./assets/owlcarousel/css/owl.carousel.min.css">
+     <link rel="stylesheet" href="./assets/owlcarousel/css/owl.theme.css">
+     <link rel="stylesheet" href="./assets/owlcarousel/css/owl.theme.default.min.css">
+     
+     <!-- Magnific Popup CSS -->
+     <link rel="stylesheet" href="./assets/css/magnific-popup.css">
+     
+     <!-- Slick CSS -->
+     <link rel="stylesheet" href="./assets/css/slick.css">
+     <link rel="stylesheet" href="assets/css/slick-theme.css">
+     
+     <!-- Style CSS -->
+     <link rel="stylesheet" href="./assets/css/style.css">
+     <link rel="stylesheet" href="./assets/css/responsive.css">
+     
+     <!-- End of CASCADING STYLE SHEETS (CSS) -->
+
+     <script>
+        window.localStorage.setItem("_loginState","logged-in")
+     </script>
+     
+     </head>
+     <body onload="getLoginStatus();displayLoginName()">
+        <!-- LOADER -->
+            <div class="preloader">
+                <div class="lds-ellipsis">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        <!-- END LOADER -->
+    
+     <!-- START HEADER -->
+     <header class="header_wrap fixed-top header_with_topbar">
+        <div class="bottom_header dark_skin main_menu_uppercase">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg d-flex justify-content-between align-items-center">
+                    <div class="navbar-nav flex-grow-1 d-flex justify-content-start">
+                        <a class="nav-link nav_item" href="./index.html">Home</a>
+                        <a class="nav-link nav_item" href="./about1.html">About Us</a>
+                        <a class="nav-link nav_item" href="./contact.html">Contact Us</a>
+                    </div>
+                    
+                    <!-- START HEADER LOGO --> 
+                    <div class="navbar-brand mx-auto">
+                        <img class="logo_light" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';" />
+                        <img class="logo_dark" src="./assets/images/logos/PetPurely_logo_resize-80.png" width="80px" height="94px" alt="PetPurely Header Logo" onclick="window.location.href='./index.html';"/>
+                    </div>
+                    <!-- End of HEADER LOGO --> 
+                    
+                    <div class="navbar-nav flex-grow-1 d-flex justify-content-end">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="./products1.html" id="productsMenu" role="button" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="productsMenu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Cats</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Food</a></li>
+                                        <li><a class="dropdown-item" href="#">Treats</a></li>
+                                        <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                        <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Dogs</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Food</a></li>
+                                        <li><a class="dropdown-item" href="#">Treats</a></li>
+                                        <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                        <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Hamsters</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Food</a></li>
+                                        <li><a class="dropdown-item" href="#">Treats</a></li>
+                                        <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                        <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Parrots</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Food</a></li>
+                                        <li><a class="dropdown-item" href="#">Treats</a></li>
+                                        <li><a class="dropdown-item" href="#">Boarding</a></li>
+                                        <li><a class="dropdown-item" href="#">Funeral Services</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="nav-link nav_item" href="#" onclick="alert('Sorry, this feature is still under development.');">Services</a>
+                             <ul class="header_list">
+                                 <span><img id="account-image" src="./assets/images/accountPicture.png" alt="Avatar" width="30px" height="30px" onclick="window.location.href='./accountDashboard.html'"></span>
+                                 <li><a href="#"><!--<i class="ti-user">--></i><span id="lnkLogin" onclick="window.localStorage.clear();window.location.href='./login.html'">Logout</span></a></li>
+                             </ul>
+                        <!--<a class="nav-link nav_item" href="./login.html">Login / Signup</a>-->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+<!-- END HEADER -->
+
+<!-- START SECTION BREADCRUMB -->
+<div class="breadcrumb_section bg_gray page-title-mini">
+    <div class="container"><!-- STRART CONTAINER -->
+        <div class="row align-items-center">
+        	<div class="col-md-6">
+                <div class="page-title">
+            		<h1>Products</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb justify-content-md-end">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item active">Products</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- END CONTAINER-->
+</div>
+<!-- END SECTION BREADCRUMB -->
+
+<!-- START MAIN CONTENT -->
+<div class="main_content">
+
+    <!-- Search Bar Section -->
+    <div class="container-fluid my-4">
+        
+    <!-- Products Searcher Title -->   
+        <h1 class="text-center">&nbsp;Searcher<img src="./assets/images/search_icon.png" width="40px" height="40px"></img></h1>
+        
+        <div class="row">
+        
+            <div class="col-md-8 offset-md-2 d-flex align-items-center">
+        
+                <!-- Search Bar --> 
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    onkeyup="searchProducts()"
+                    />
+
+            </div>
+        </div>
+    </div>
+</div>    
+<!-- END OF START MAIN CONTENT -->
+
+<script>
+  function searchProducts()
+  {
+      // Get the search text
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase().trim();
+  
+      // Get all the columns (grid items)
+      const productColumns = document.querySelectorAll(".grid_item");
+  
+      let anyMatch = false;
+      productColumns.forEach((col) => {
+        // Each product title is within .product_title
+        const productTitle = col.querySelector(".product_title")?.textContent.toLowerCase() || "";
+  
+        // Check if product title contains the search string
+        if (productTitle.indexOf(filter) > -1) {
+          // Show the column
+          col.classList.remove("d-none");
+          anyMatch = true;
+        } else {
+          // Hide the column
+          col.classList.add("d-none");
+        }
+      });
+  
+      // Show or hide the "No product found" message
+      const noProductMessage = document.getElementById("noProductMessage");
+      
+      if(!anyMatch) 
+      {
+        noProductMessage.style.display = "block";
+        noProductMessage.style.fontWeight = "bold";
+        noProductMessage.style.fontSize = "20px";
+      } 
+      else 
+      {
+        noProductMessage.style.display = "none";
+      } // End of if-else statement
+    } // End of function searchProducts() 
+
+</script>
+  
+<!-- START SECTION SHOP -->
+<div class="section">
+	<div class="container" id="productsContainer">
+        <div id="noProductMessage" class="text-center mt-3" style="display: none; color: red;">No product found</div>
+    	<div class="row">
+			<div class="col-12">
+            	<div class="row align-items-center mb-4 pb-1">
+                    <div class="col-12">
+                        <div class="product_header">
+                            <div class="product_header_left">
+                                <div class="custom_select">
+                                    <select class="form-control form-control-sm">
+                                        <option value="order">Default sorting</option>
+                                        <option value="popularity">Sort by popularity</option>
+                                        <option value="date">Sort by newness</option>
+                                        <option value="price">Sort by price: low to high</option>
+                                        <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="product_header_right">
+                            	<div class="products_view">
+                                    <!--<a href="javascript:;" class="shorting_icon grid active"><i class="ti-view-grid"></i></a>
+                                    <a href="javascript:;" class="shorting_icon list"><i class="ti-layout-list-thumb"></i></a>-->
+                                </div>
+                                <div class="custom_select">
+                                    <select class="form-control form-control-sm">
+                                        <option value="">Showing</option>
+                                        <option value="9">9</option>
+                                        <option value="12">12</option>
+                                        <option value="18">18</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                
+                <!-- data-item to show the total number of product images per page -->
+                <!-- data-item-show to show how many product images per row --> 
+                <!--<div class="row shop_container loadmore" data-item="8" data-item-show="4" data-finish-message="No More Item to Show" data-btn="Load More">-->
+                <div class="row shop_container loadmore" data-item="8" data-item-show="4" data-finish-message="No More Item to Show" data-btn="Load More">
+                    <div class="col-lg-3 col-md-4 col-6 grid_item">
+
+        <!-- First Product -->   
+        
+          <div class="product">
+            <div class="product_img">
+                <a href="productDetails.html">
+                    <!--<img src="assets/images/product_img1.jpg" alt="product_img1" id="firstProductImage">-->
+                    <img src="assets/images/products/dogs/Stella & Chewy’s Freeze Dried Dinner Patties Dog Food (Pork).png" alt="Stella & Chewy Dried Dinner Patties Dog Food (Pork)" id="firstProductImage">
+                </a>
+
+            <!-- Hovered Over Product Action Box -->   
+                <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                        <li class="add-to-cart"><a href="#" onclick="captureFirstProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                        <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                        <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>                               
+                    </ul>
+                </div>
+            <!-- Hovered Over Product Action Box -->    
+            
+            </div>
+            <div class="product_info" data-name="Stella & Chewy’s Freeze Dried Dinner Patties Dog Food (Pork)">
+                <h6 class="product_title" id="firstProductName" onclick="captureFirstProductInfo('ProductDetail');" ><a href="#">Stella & Chewy’s Freeze Dried Dinner Patties Dog Food (Pork)</a></h6>
+                <div class="product_price">
+                    <span class="price" id="firstProductPrice">$49.90</span> <!-- Sales Price -->
+                    <del>$56.00</del> <!-- RRP -->
+                </div>
+              
+               <!-- Reviews Ratings --> 
+                <div class="rating_wrap">
+                    <div class="rating">
+                        <div class="product_rate" style="width:100%"></div>
+                    </div>
+                    <span class="rating_num">(21)</span>
+                </div>
+               <!-- End of reviews rating -->
+
+               <!-- Brief Product description -->
+               <div>
+                <span>
+                    Category: Dog Food
+                    <br/>
+                    Type: Animal Consumable
+                    Weight: <span id="firstProductWeight">14oz</span>
+                </span> 
+             </div>
+            <!-- End of Brief Product Description --> 
+            
+
+                <center>
+                       <!-- Insert a "Add to Cart Button Here" -->
+                        <div class="cart_btn">
+                            <!--<button class="btn btn-fill-out btn-addtocart" type="button" onclick="window.location.href='./addToCart.html'"><i class="icon-basket-loaded"></i> Add to cart</button>-->                                    
+                            <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureFirstProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                        </div>
+                    
+                </center>
+            </div>
+            <!-- End of product-info -->
+        </div>
+    </div>
+    <!-- End of First Product -->       
+
+    <!-- Second Product -->  
+            <div class="col-lg-3 col-md-4 col-6 grid_item">
+                <div class="product">
+                    <div class="product_img">
+                        <a href="productDetails.html">
+                            <!--<img src="assets/images/product_img2.jpg" alt="product_img2" id="secondProductImage">-->
+                            <img src="assets/images/products/dogs/Zeal Free Range Air Dried Dog Treats (Hoki Fish Cubes).png" alt="product_img2" id="secondProductImage">
+                        </a>
+
+                        <!-- Hovered Over Product Action Box -->   
+                        <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li class="add-to-cart"><a href="#" onclick="captureSecondProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                              <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                                <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Hovered Over Product Action Box -->    
+
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title" id="secondProductName" onclick="captureSecondProductInfo('ProductDetail');" ><a href="#">Zeal Free Range Air Dried Dog Treats (Hoki Fish Cubes)</a></h6>
+                        
+                        <div class="product_price">
+                            <span class="price" id="secondProductPrice">$14.00</span> <!-- Sales Price-->
+                            <del>$21.50</del> <!-- RRP -->
+                        </div>
+
+                         <!-- Reviews Ratings --> 
+                            <div class="rating_wrap">
+                                <div class="rating">
+                                    <div class="product_rate" style="width:100%"></div>
+                                </div>
+                                <span class="rating_num">(21)</span>
+                            </div>
+                        <!-- End of reviews rating -->
+
+                        <!-- Brief Product description -->
+                        <div>
+                            <span>
+                                Category: Dog Treat
+                                <br/>
+                                Type: Animal Consumable
+                                Weight: <span id="secondProductWeight">85g</span>
+                            </span> 
+                         </div>
+                        <!-- End of Brief Product Description --> 
+                        
+                       <center>
+                               <!-- Insert a "Add to Cart Button Here" -->
+                                <div class="cart_btn">
+                                    <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureSecondProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                                </div>
+                            
+                        </center> 
+                    </div>
+                </div>
+            </div>
+        <!-- End of Second Product -->        
+        <!-- Third Product --> 
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="./productDetails.html">
+                        <!--<img src="assets/images/product_img3.jpg" alt="product_img3" id="thirdProductImage">-->
+                        <img src="assets/images/products/dogs/Wellness Complete Health Chicken Stew With Peas & Carrots Grain-Free Canned Dog Food.png" alt="product_img3" id="thirdProductImage">
+                    </a>
+            
+                  <!-- Hovered Over Product Action Box -->   
+                    <div class="product_action_box">
+                        <ul class="list_none pr_action_btn">
+                            <li class="add-to-cart"><a href="#"onclick="captureThirdProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                          <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                            <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- Hovered Over Product Action Box --> 
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="thirdProductName" onclick="captureThirdProductInfo('ProductDetail');" ><a href="#">Wellness Complete Health Chicken Stew With Peas & Carrots Grain-Free Canned Dog Food</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="thirdProductPrice">$6.60</span> <!-- Sales Price -->
+                        <del>$8.20</del> <!-- RRP -->
+                    </div>
+
+                     <!-- Reviews Ratings --> 
+                     <div class="rating_wrap">
+                        <div class="rating">
+                            <div class="product_rate" style="width:100%"></div>
+                        </div>
+                        <span class="rating_num">(21)</span>
+                    </div>
+                     <!-- End of reviews rating -->
+                        
+                    <!-- Brief Product description -->
+                    <div>
+                        <span>
+                            Category: Dog Canned Food
+                                <br/>
+                            Type: Animal Nutrition
+                            Weight: <span id="thirdProductWeight">354g</span>
+                        </span> 
+                     </div>
+                    <!-- End of Brief Product Description --> 
+                    
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureThirdProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                     
+                    </center>
+                </div>
+            </div>
+        </div>
+        <!-- End of Third Product -->    
+        <!-- Fourth Product -->
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <!--<img src="assets/images/product_img4.jpg" alt="product_img4" id="fourthProductImage">-->
+                        <img src="assets/images/products/dogs/Zeal Lactose Free Pet Milk.png" alt="product_img4" id="fourthProductImage">         
+                    </a>
+                  
+                         <!-- Hovered Over Product Action Box -->   
+                         <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li class="add-to-cart"><a href="#"onclick="captureFourthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                              <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                                <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Hovered Over Product Action Box --> 
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="fourthProductName" onclick="captureFourthProductInfo('ProductDetail');" ><a href="#">Zeal Lactose Free Pet Milk 380ml</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="fourthProductPrice">$4.90</span>
+                        <del>$5.39</del> <!-- RRP -->
+                    </div>
+
+                     <!-- Reviews Ratings --> 
+                     <div class="rating_wrap">
+                        <div class="rating">
+                            <div class="product_rate" style="width:100%"></div>
+                        </div>
+                        <span class="rating_num">(21)</span>
+                    </div>
+                     <!-- End of reviews rating -->
+
+                    <!-- Brief Product description -->
+                    <div>
+                        <span>
+                            Category: Dog Milk
+                            <br/>
+                            Type: Animal Breverage
+                            Weight: <span id="fourthProductWeight">380ml</span>
+                        </span> 
+                     </div>
+                    <!-- End of Brief Product Description -->  
+
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureFourthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                     </center>
+                </div>
+            </div>
+        </div>
+       <!-- End of Fourth Product -->
+    
+         <!-- Fifth Product -->
+               <div class="col-lg-3 col-md-4 col-6 grid_item">
+                <div class="product">
+                    <div class="product_img">
+                        <a href="shop-product-detail.html">
+                            <!--<img src="assets/images/product_img5.jpg" alt="product_img5" id="fifthProductImage">-->
+                            <img src="assets/images/products/cats/Aatas Cat Tantalizing Tuna & Anchovy 80g.png" alt="product_img5" id="fifthProductImage">
+                        </a>
+                        <!-- Hovered Over Product Action Box -->   
+                        <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li class="add-to-cart"><a href="#" onclick="captureFifthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                              <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                                <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Hovered Over Product Action Box -->
+                    </div>
+                    <div class="product_info">
+                        <!--<h6 class="product_title" id="fifthProductName" onclick="captureFifthProductInfo('ProductDetail');" ><a href="#">Cat Food #1</a></h6>-->
+                        <h6 class="product_title" id="fifthProductName" onclick="captureFifthProductInfo('ProductDetail');" ><a href="#">Aatas Cat Tantalizing Tuna & Anchovy 80g</a></h6>
+                        
+                        <div class="product_price">
+                            <span class="price" id="fifthProductPrice">$1.00</span> <!-- Sales Price -->
+                            <del>$1.40</del> <!-- RRP -->       
+                        </div>
+
+                         <!-- Reviews Ratings --> 
+                         <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:100%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                         <!-- End of reviews rating -->
+
+                        <!-- Brief Product description -->
+                        <div>
+                            <span>
+                                Category: Cat Food
+                                <br/>
+                                Type: Animal Canned Food
+                                Weight: <span id="fifthProductWeight">80g</span>
+                            </span> 
+                         </div>
+                        <!-- End of Brief Product Description -->  
+
+                        <center>
+                            <!-- Insert a "Add to Cart Button Here" -->
+                             <div class="cart_btn">
+                                 <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureFifthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                             </div>
+                         
+                        </center>  
+                    </div>
+                </div>
+            </div>
+        <!-- End of Fifth Product -->    
+        <!-- Sixth Product --> 
+            <div class="col-lg-3 col-md-4 col-6 grid_item">
+                <div class="product"> 
+                    <div class="product_img">
+                        <a href="shop-product-detail.html">
+                            <!--<img src="assets/images/product_img6.jpg" alt="product_img6" id="sixthProductImage">-->
+                            <img src="assets/images/products/cats/Monge Cat Natural Atlantic Tuna 80g.png" alt="product_img6" id="sixthProductImage">
+                        </a>
+                       
+                       <!-- Hovered Over Product Action Box -->   
+                       <div class="product_action_box">
+                            <ul class="list_none pr_action_btn">
+                                <li class="add-to-cart"><a href="#" onclick="captureSixthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                            <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                                <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title" id="sixthProductName" onclick="captureSixthProductInfo('ProductDetail');" ><a href="#">Monge Cat Natural Atlantic Tuna 80g</a></h6>
+                        
+                        <div class="product_price">
+                            <span class="price" id="sixthProductPrice">$2.30</span> 
+                            <del>$3.25</del> <!-- RRP -->                                   
+                        </div>
+                        
+                         <!-- Reviews Ratings --> 
+                         <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:100%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                         <!-- End of reviews rating -->
+
+                        <!-- Brief Product description -->
+                        <div>
+                            <span>
+                                Category: Cat Food
+                                <br/>
+                                Type: Animal Canned Food
+                                Weight: <span id="sixthProductWeight">80g</span>
+                            </span> 
+                         </div>
+                        <!-- End of Brief Product Description -->  
+                        
+                        <center>
+                            <!-- Insert a "Add to Cart Button Here" -->
+                             <div class="cart_btn">
+                                 <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureSixthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                             </div>
+                         </center>                                    
+                    </div>
+                </div>
+            </div>
+           <!-- End of Sixth Product --> 
+           <!-- Seventh Product -->
+            <div class="col-lg-3 col-md-4 col-6 grid_item">
+                <div class="product">
+                    <div class="product_img">
+                        <a href="shop-product-detail.html">
+                            <!--<img src="assets/images/product_img7.jpg" alt="product_img7" id="seventhProductImage">-->
+                            <img src="assets/images/products/cats/FROZEN PetCubes Cat Raw Kangaroo 1.28Kg.png" alt="product_img7" id="seventhProductImage">
+                        </a>
+
+                       <!-- Hovered Over Product Action Box -->   
+                       <div class="product_action_box">
+                        <ul class="list_none pr_action_btn">
+                            <li class="add-to-cart"><a href="#" onclick="captureSeventhProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                        <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                            <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                        </ul>
+                       </div>
+
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title" id="seventhProductName" onclick="captureSeventhProductInfo('ProductDetail');" ><a href="#">FROZEN* PetCubes Cat Raw Kangaroo 1.28Kg</a></h6>
+                        
+                        <div class="product_price">
+                            <span class="price" id="seventhProductPrice">$45.00</span> <!-- Sales Price -->
+                            <del>$50.00</del> <!-- RRP -->         
+                        </div>
+
+                         <!-- Reviews Ratings --> 
+                         <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:100%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                         <!-- End of reviews rating -->
+
+                          <!-- Brief Product description -->
+                          <div>
+                            <span>
+                                Category: Cat Food
+                                <br/>
+                                Type: Animal Frozen Food
+                                Weight: <span id="seventhProductWeight">1.28Kg</span>
+                            </span> 
+                         </div>
+                        <!-- End of Brief Product Description -->  
+                        
+                        <center>
+                            <!-- Insert a "Add to Cart Button Here" -->
+                             <div class="cart_btn">
+                                 <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureSeventhProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                             </div>
+                         </center>                         
+                    </div>
+                </div>
+            </div>
+        <!-- End of Seventh Product -->    
+
+        <!-- Eighth Product -->
+            <div class="col-lg-3 col-md-4 col-6 grid_item">
+                <div class="product">
+                    <div class="product_img">
+                        <a href="shop-product-detail.html">
+                            <!--<img src="assets/images/product_img8.jpg" alt="product_img8" id="eighthProductImage">-->
+                            <img src="assets/images/products/cats/Absolute Bites Air-Dried Duck Breast 350g.png" alt="product_img8" id="eighthProductImage">
+                        </a>
+                        
+                       <!-- Hovered Over Product Action Box -->   
+                       <div class="product_action_box">
+                        <ul class="list_none pr_action_btn">
+                            <li class="add-to-cart"><a href="#" onclick="captureEighthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                        <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                            <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                        </ul>
+                       </div>
+
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_title" id="eighthProductName" onclick="captureEighthProductInfo('ProductDetail');"><a href="#">Absolute Bites Air-Dried Duck Breast 350g</a></h6>
+                        
+                        <div class="product_price">
+                            <span class="price" id="eighthProductPrice">$28.80</span> <!-- Sales Price -->       
+                            <del>$43.90</del> <!-- RRP -->                             
+                        </div>
+
+                         <!-- Reviews Ratings --> 
+                         <div class="rating_wrap">
+                            <div class="rating">
+                                <div class="product_rate" style="width:100%"></div>
+                            </div>
+                            <span class="rating_num">(21)</span>
+                        </div>
+                         <!-- End of reviews rating -->
+
+                          <!-- Brief Product description -->
+                          <div>
+                            <span>
+                                Category: Cat Treat
+                                <br/>
+                                Type: Animal Edibles
+                                Weight: <span id="eighthProductWeight">350g</span>
+                            </span> 
+                            </span> 
+                          </div>
+                          <!-- End of Brief Product Description -->  
+                        
+                        <center>
+                            <!-- Insert a "Add to Cart Button Here" -->
+                             <div class="cart_btn">
+                                 <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureEighthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                             </div>
+                         </center>                         
+                    </div>
+                </div>
+            </div>
+           <!-- End of Eighth Product -->    
+  
+           <!-- Nineth Product --> 
+           <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="./assets/images/products/hamsters/happi-hamster-healthy-immune-system-fortified-nutritional-diet.png" alt="product_img9" id="ninethProductImage">
+                    </a>
+
+                    <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                      <ul class="list_none pr_action_btn">
+                            <li class="add-to-cart"><a href="#" onclick="captureNinethProductInfo('9','AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                        <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                            <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                            <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                        </ul>
+                   </div>
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="ninethProductName" onclick="captureNinethProductInfo('9','ProductDetail');"><a href="#">Happi Hamster Healthy Immune System Fortified Nutritional Diet 600g</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="ninethProductPrice">$9.50</span>
+                        <del>$11.50</del> <!-- RRP -->      
+                    </div>
+
+                     <!-- Reviews Ratings --> 
+                     <div class="rating_wrap">
+                        <div class="rating">
+                            <div class="product_rate" style="width:100%"></div>
+                        </div>
+                        <span class="rating_num">(21)</span>
+                    </div>
+                     <!-- End of reviews rating -->
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                    
+                    <center>
+                    <!-- Insert a "Add to Cart Button Here" -->
+                     <div class="cart_btn">
+                         <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureNinethProductInfo('9','AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                     </div>
+                   </center>
+                </div>
+            </div>
+        </div>
+      <!-- End of Nineth Product -->  
+
+      <!-- Tenth Product --> 
+      <div class="col-lg-3 col-md-4 col-6 grid_item">
+        <div class="product">
+            <div class="product_img">
+                <a href="shop-product-detail.html">
+                    <img src="assets/images/product_img10.jpg" alt="product_img10" id="tenthProductImage">
+                </a>
+
+                <!-- Hovered Over Product Action Box -->   
+               <div class="product_action_box">
+                  <ul class="list_none pr_action_btn">
+                        <li class="add-to-cart"><a href="#" onclick="captureNinethProductInfo('10','AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                    <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                        <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                        <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                    </ul>
+               </div>
+
+            </div>
+            <div class="product_info">
+                <!--<h6 class="product_title" id="tenthProductName" onclick="captureTenthProductInfo('ProductDetail');"><a href="#">Parrot Treat #1</a></h6>-->
+                <h6 class="product_title" id="tenthProductName" onclick="captureNinethProductInfo('10','ProductDetail');"><a href="#">Parrot Treat #1</a></h6>
+                
+                <div class="product_price">
+                    <span class="price" id="tenthProductPrice">$6.00</span>
+                </div>
+
+                  <!-- Brief Product description -->
+                  <div>
+                    <span>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </span> 
+                  </div>
+                  <!-- End of Brief Product Description -->  
+                
+                <center>
+                <!-- Insert a "Add to Cart Button Here" -->
+                 <div class="cart_btn">
+                     <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureNinethProductInfo('10','AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                 </div>
+               </center>
+            </div>
+        </div>
+    </div>
+    <!-- End of Tenth Product -->  
+      
+      <!-- Eleventh Product --> 
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img11.jpg" alt="product_img11" id="eleventhProductImage">
+                    </a>
+                    
+                 <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded" onclick="captureEleventhProductInfo('AddToCart');"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="eleventhProductName" onclick="captureEleventhProductInfo('ProductDetail');"><a href="#">Dog Food #3</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="eleventhProductPrice">$28.00</span>
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureEleventhProductInf('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+      <!-- End of Eleventh Product -->  
+      
+      <!-- Twelveth Product --> 
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img12.jpg" alt="product_img7" id="twelvethProductImage">
+                    </a>
+                    
+                    <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded" onclick="captureTwelvethProductInfo('AddToCart');"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="twelvethProductName" onclick="captureTwelvethProductInfo('ProductDetail');"><a href="#">Dog Treat #3</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="twelvethProductPrice">$18.00</span>                        
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                    
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureTwelvethProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>                      
+                </div>
+            </div>
+        </div>
+        <!-- End of Twelveth Product -->
+
+        <!-- Thirteenth Product --> 
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img13.jpg" alt="product_img13" id="thirdteenthProductImage">
+                    </a>
+
+                 <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="./addToCart.html"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>
+                    
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="thirteenthProductName" onclick="captureThirdteenthProductInfo();"><a href="#">Cat Food #3</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="thirteenthProductPrice">$38.00</span>
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                    
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="window.location.href='./addToCart.html'"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>
+                    
+                </div>
+            </div>
+        </div>
+       <!-- End of Thirteenth Product -->  
+
+      <!-- Fourteenth Product -->
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img14.jpg" alt="product_img14" id="fourteenthProductImage">
+                    </a>
+                  
+                 <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="./addToCart.html"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>    
+                    
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="fourteenthProductName" onclick="captureFourteenthProductInfo();"><a href="#">Cat Treat #3</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="fourteenthProductPrice">$28.00</span>
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                    
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="window.location.href='./addToCart.html'"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Fourteenth Product -->
+        
+        <!-- Fifteenth Product --> 
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img15.jpg" alt="product_img14" id="fifthteenthProductImage">
+                    </a>
+                    
+                    <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="./addToCart.html"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>    
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="fifteenthProductName" onclick="captureFifteenthProductInfo();"><a href="shop-product-detail.html">Parrot Food #2</a></h6>
+                    
+                    <div class="product_price">
+                        <span class="price" id="fifteenthProductPrice">$26.00</span>                        
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                    
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="window.location.href='./addToCart.html'"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>
+
+                     <!-- Hovered Over Product Action Box (For Product Details) -->
+                     <div class="list_product_action_box">
+                       <ul class="list_none pr_action_btn">
+                           <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                        <!--   <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                           <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>  -->
+                           <li><a href="#"><i class="icon-heart"></i></a></li>
+                       </ul>
+                    </div>
+                      <!-- End of Hovered Over Product Action Box (For Product Details) -->   
+                </div>
+            </div>
+        </div>
+       <!-- End of Fifteenth Product --> 
+        
+      <!-- Sixteenth Product -->
+        <div class="col-lg-3 col-md-4 col-6 grid_item">
+            <div class="product">
+                <div class="product_img">
+                    <a href="shop-product-detail.html">
+                        <img src="assets/images/product_img9.jpg" alt="product_img12" id="sixteenthProductImage">
+                    </a>
+                    
+                    <!-- Hovered Over Product Action Box -->   
+                   <div class="product_action_box">
+                    <ul class="list_none pr_action_btn">
+                          <li class="add-to-cart"><a href="./addToCart.html"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                      <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
+                          <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
+                          <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
+                      </ul>
+                   </div>    
+
+                </div>
+                <div class="product_info">
+                    <h6 class="product_title" id="sixteenthProductName" onclick="captureSixteenthProductInfo();"><a href="#">Parrot Treat #2</a></h6>
+                    
+                    <div class="product_price" id="sixteenthProductPrice">
+                        <span class="price">$16.00</span>                        
+                    </div>
+
+                      <!-- Brief Product description -->
+                      <div>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span> 
+                      </div>
+                      <!-- End of Brief Product Description -->  
+                
+                    <center>
+                        <!-- Insert a "Add to Cart Button Here" -->
+                         <div class="cart_btn">
+                             <button class="btn btn-fill-out btn-addtocart" type="button" onclick="window.location.href='./addToCart.html'"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         </div>
+                    </center>
+
+                <!-- End of Sixteenth Product-->   
+                           </div>
+                        </div>
+                    </div>
+                </div>
+        	</div>
+        </div>
+    </div>
+</div>
+<!-- END SECTION SHOP -->
+
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- START FOOTER -->
+<footer class="footer_dark">
+	<div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                	<div class="widget">
+                        <div class="footer_logo"> 
+                            <a href="#"><img src="assets/images/logos/Logo bottom name - 100 x 100.png" alt="PetPurely Footer logo"/></a>
+                        </div>
+                        <p>If you are going to use of Lorem Ipsum need to be sure there isn't hidden of text</p>
+                    </div>
+                    <div class="widget">
+                        <ul class="social_icons social_white">
+                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
+                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                        </ul>
+                    </div>
+        		</div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                	<div class="widget">
+                        <h6 class="widget_title">Useful Links</h6>
+                        <ul class="widget_links">
+                            <li><a href="./about.html">About Us</a></li>
+                            <li><a href="./faq.html">FAQ</a></li>
+                            <li><a href="#" onclick="alert('Sorry,this feature is still under development.');">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                	<div class="widget">
+                        <h6 class="widget_title">Category</h6>
+                        <ul class="widget_links">
+                            <li><a href="#" onclick="alert('Sorry,this feature is still under development.');">Dogs</a></li>
+                            <li><a href="#" onclick="alert('Sorry,this feature is still under development.');">Cats</a></li>
+                            <li><a href="#" onclick="alert('Sorry,this feature is still under development.');">Parrots</a></li>                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                	<div class="widget">
+                        <h6 class="widget_title">My Account</h6>
+                        <ul class="widget_links">
+                            <li><a href="./my-account.html" onclick="alert('Sorry,this feature is still under development.');">My Account</a></li>
+                            <li><a href="./my-account.html" onclick="alert('Sorry,this feature is still under development.');">Orders History</a></li>
+                            <li><a href="./my-account.html" onclick="alert('Sorry,this feature is still under development.');">Order Tracking</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->  
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                	<div class="widget">
+                        <h6 class="widget_title">Contact Info</h6>
+                        <ul class="contact_info contact_info_light">
+                            <li>
+                                <i class="ti-location-pin"></i>
+                                <p>111 Pawsome Street, Singapore 123456</p>
+                            </li>
+                            <li>
+                                <i class="ti-email"></i>
+                                <a href="mailto:sales@petpurely.pets">sales@petpurely.pets</a>
+                            </li>
+                            <li>
+                                <i class="ti-mobile"></i>
+                                <p>+65 1324 5678</p>
+                            </li>
+                            <l1>
+                                <ul class="widget_links">
+                                    <li><a href="./contact.html">Contact Us</a></li>
+                                </ul>
+                            </l1>
+                        </ul>
+                    </div>
+                </div> 
+                <!-- End of Contact Info -->  
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom_footer border-top-tran">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0 text-center text-md-start"><center>Copyright © 2024. <a href="./index.html"><span style="color:yellow">PetPurely eCommerce Ltd.</span></a> All Rights Reserved.</p></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- END FOOTER -->
+
+
+<a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a> 
+
+<!-- Latest jQuery --> 
+<!--script src="assets/js/jquery-3.7.1.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jquery-ui --> 
+<script src="assets/js/jquery-ui.js"></script>n
+
+<!-- popper min js -->
+<script src="assets/js/popper.min.js"></script>
+
+<!-- Latest compiled and minified Bootstrap --> 
+<script src="assets/bootstrap/js/bootstrap.min.js"></script> 
+
+<!-- owl-carousel min js  --> 
+<script src="assets/owlcarousel/js/owl.carousel.min.js"></script> 
+
+<!-- magnific-popup min js  --> 
+<script src="assets/js/magnific-popup.min.js"></script> 
+
+<!-- waypoints min js  --> 
+<script src="assets/js/waypoints.min.js"></script> 
+
+<!-- parallax js  --> 
+<script src="assets/js/parallax.js"></script> 
+
+<!-- countdown js  --> 
+<script src="assets/js/jquery.countdown.min.js"></script> 
+
+<!-- imagesloaded js --> 
+<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+
+<!-- isotope min js --> 
+<script src="assets/js/isotope.min.js"></script>
+
+<!-- jquery.dd.min js -->
+<script src="assets/js/jquery.dd.min.js"></script>
+
+<!-- slick js -->
+<script src="assets/js/slick.min.js"></script>
+
+<!-- elevatezoom js -->
+<script src="assets/js/jquery.elevatezoom.js"></script>
+
+<!-- isotope-loadmore js -->
+<script src="assets/js/isotope-loadmore.js"></script>
+
+<!-- scripts js --> 
+<script src="assets/js/scripts.js"></script>
+
+<!-- Custom Javascript -->
+<script defer src="./assets/js/pets_scripts.js"></script>
+
+
+     
+
+</body>
+</html>
