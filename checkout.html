@@ -887,23 +887,25 @@
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="option4">
-                                <label class="form-check-label" for="exampleRadios4" onclick="displayUnavailableFunctionMessage();"">Check Payment</label>
+                                <label class="form-check-label" for="exampleRadios4" onclick="displayUnavailableFunctionMessage();">Check Payment</label>
                                 <p data-method="option4" class="payment-text">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios5" value="option5">
                                 <label class="form-check-label" for="exampleRadios5">Stripe</label>
-                                <p data-method="option5" class="payment-text">Pay via Stripe; you can pay with your credit card if you don't have a Stripe account.</p>
+                                <p data-method="option5" class="payment-text">Credit Card Payment Purchase using Stripe. Please click on Place Order to proceed.</p>
                             </div>
                         </div>
                     </div>
                     <!--<a href="./orderCompleted.html" class="btn btn-fill-out btn-block">Place Order</a>-->
-                    <a href="#" class="btn btn-fill-out btn-block" onclick="createOrders(event);">Place Order</a>
+                    <!--<a href="#" class="btn btn-fill-out btn-block" onclick="createOrders(event);">Place Order</a>-->
+                    <a href="#" class="btn btn-fill-out btn-block" id="btnPlaceOrder" onclick="createOrders(event);" title="Please click this button to make your purchase payment now.">Place Order</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- END SECTION SHOP -->
 
 </div>

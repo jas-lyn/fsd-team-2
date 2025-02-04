@@ -33,7 +33,6 @@ let prod_total_cost = "";
 let cartSubTotal = "";
 let cartGrandTotal = "";
 
-
 // ***************************
 // * DATE AND TIME OPERATION *
 // ***************************
@@ -55,8 +54,11 @@ function getWeekDayDateTime()
 // * USER ACCOUNT MANAGEMENT *
 // ***************************
 
+// [CHANGE PASSWORD]
+// -----------------
 // [CUSTOMERS/USERS]
 // -----------------
+
 function getLoginName() 
 {
   // Objective: Receives the provided login name data.
@@ -320,7 +322,7 @@ function getAdminSignUpEmail()
      let _signUpAdminEmail = document.getElementById("txtAdminSignUpEmail").value;
      window.localStorage.setItem("signUpAdminEmail", _signUpAdminEmail); // Stores the Admin signUp email.
 
-} // End of function getLoginEmail()
+} // End of function getAdminSignUpEmail()
 
 function getAdminLoginPassword() 
 {    
@@ -503,12 +505,14 @@ function updateLoginLogoutState(profileName)
 // Objective: Clears all Web Browsers Storage variables and navigate to the appropriate page accordingly.
 // -------------------------------------------------------------------------------------------------------
     
-   window.localStorage.clear(); // Requests for service to clear all localstorage web brower's variables.
-   window.sessionStorage.clear(); // Requests for service to clear all sessionstorage web brower's variables. 
-   
-   if(profileName !== "admin")
+//   window.localStorage.clear(); // Requests for service to clear all localstorage web brower's variables.
+//   window.sessionStorage.clear(); // Requests for service to clear all sessionstorage web brower's variables. 
+
+ //  alert(profileName);
+ 
+   if(profileName !== "admin" || profileName !== "administrator")
    {
-     window.location.href = "./login.html";
+     window.location.href = "./login.html"; // Navigates back to the client login page.
    }
    else
    {
@@ -633,7 +637,11 @@ function dashboardRoute(profileUser)
    if((profileUser === "admin") || (profileUser === "Admin") || (profileUser === "administrator") || (profileUser === "Administrator"))
     {
        window.location.href="./admin-account1.html";
-    } // End of if statement
+    } 
+    else
+    {
+      alert("Sorry, you have not entitled to view this.");
+    } // End of if-else statement
 
 } // End of function dashboardRoute(profileUser)
 
@@ -1140,15 +1148,23 @@ function captureFirstProductInfo(productDisplayMode)
 
       window.localStorage.setItem("productSelected", "firstProduct");
 
- if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
- {
-   window.location.href = "./productDetails.html"; // Displays information in Product Details page.
- }
- else // Alternative: Add To Cart Mode
- {
-   window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
- } // End of if-slse statement
-    
+      if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+      {
+        window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+      }
+      else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+      {
+        window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+      } // End of if-slse statement
+      else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+      { 
+        window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+      }
+      else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+       {
+         window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+       } // End of if-slse statement */
+        
 } // End of function captureFirstProductInfo()
 
 // Second Product
@@ -1210,14 +1226,22 @@ function captureSecondProductInfo(productDisplayMode)
 
       window.localStorage.setItem("productSelected", "secondProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+      if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+        {
+          window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+        }
+        else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+        {
+          window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+        } // End of if-slse statement
+        else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+        { 
+          window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+        }
+        else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+         {
+           window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+         } // End of if-slse statement */
    
 } // End of function captureSecondProductInfo()
 
@@ -1280,15 +1304,23 @@ function captureThirdProductInfo(productDisplayMode)
 
     window.localStorage.setItem("productSelected", "thirdProduct");
 
+    if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+      {
+        window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+      }
+      else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+      {
+        window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+      } // End of if-slse statement
+      else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+      { 
+        window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+      }
+      else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+       {
+         window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+       } // End of if-slse statement */
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
    
 } // End of function captureThirdProductInfo()
 
@@ -1348,14 +1380,23 @@ function captureFourthProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "fourthProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
+
    
 } // End of function captureFourthProductInfo()
 
@@ -1408,14 +1449,23 @@ function captureFifthProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "fifthProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
+
    
 } // End of function captureFifthProductInfo()
 
@@ -1472,15 +1522,23 @@ function captureSixthProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "sixthProduct");
 
-
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
+
    
 } // End of function captureSixthProductInfo()
 
@@ -1554,14 +1612,22 @@ function captureSeventhProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "seventhProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
 
 } // End of const captureSeventhProductInfo =()
 
@@ -1627,14 +1693,22 @@ function captureEighthProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "eighthProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
 
 } // End of function captureEighthProductInfo()
 
@@ -1696,15 +1770,22 @@ function captureNinethProductInfo(productDisplayMode)
 
  window.localStorage.setItem("productSelected", "ninethProduct");
 
-
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+ if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
 
 } // End of function captureNinethProductInfo()
 
@@ -1766,14 +1847,22 @@ window.localStorage.setItem("tenthProductDescription", tenthProductContent);
 
 window.localStorage.setItem("productSelected", "tenthProduct");
    
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement 
+   } // End of if-slse statement */
 
 } // End of function captureTenthProductInfo()
 
@@ -1834,15 +1923,23 @@ function captureEleventhProductInfo(productDisplayMode)
 window.localStorage.setItem("eleventhProductDescription", eleventhProductContent);
 
 window.localStorage.setItem("productSelected", "eleventhProduct");
-   
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+
+if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
 
 } // End of function captureEleventhProductInfo()
 
@@ -1904,14 +2001,22 @@ window.localStorage.setItem("twelvethProductDescription", twelvethProductContent
 
 window.localStorage.setItem("productSelected", "twelvethProduct");
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
+if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+  {
+    window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+  {
+    window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+  } // End of if-slse statement
+  else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+  { 
+    window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+  }
+  else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
    {
      window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   } // End of if-slse statement */
 
 } // End of function captureTwelvethProductInfo()
 
@@ -1930,14 +2035,22 @@ function captureThirdteenthProductInfo(productDisplayMode)
    window.localStorage.setItem("prodName",prod_name); // Stores thirdteenth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores thirdteenth product price in localstorage.
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+    {
+      window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+    {
+      window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+    } // End of if-slse statement
+    else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+    { 
+      window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+     {
+       window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+     } // End of if-slse statement */
 
 } // End of function captureThirdteenthProductInfo()
 
@@ -1956,16 +2069,25 @@ function captureFourteenthProductInfo(productDisplayMode)
    window.localStorage.setItem("prodName",prod_name); // Stores fourteenth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores fourteenth product price in localstorage.
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
-
-} // End of function captureFourteenthProductInfo()
+  
+   if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+    {
+      window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+    {
+      window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+    } // End of if-slse statement
+    else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+    { 
+      window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+     {
+       window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+     } // End of if-slse statement 
+      
+    } // End of function captureFourteenthProductInfo()
 
 // Fifteenth Product
 // -----------------
@@ -1982,14 +2104,22 @@ function captureFifthteenthProductInfo(productDisplayMode)
    window.localStorage.setItem("prodName",prod_name); // Stores fifteenth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores fifteenth product price in localstorage.
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+    {
+      window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+    {
+      window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+    } // End of if-slse statement
+    else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+    { 
+      window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+     {
+       window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+     } // End of if-slse statement 
 
 } // End of function captureFifthteenthProductInfo()
 
@@ -2008,14 +2138,22 @@ function captureSixteenthProductInfo(productDisplayMode)
    window.localStorage.setItem("prodName",prod_name); // Stores sixteenth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores sixteenth product price in localstorage.
 
-   if(productDisplayMode === "ProductDetail") // If the display mode is "Product Detail"
-   {
-     window.location.href = "./productDetails.html"; // Displays information in Product Details page.
-   }
-   else // Alternative: Add To Cart Mode
-   {
-     window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
-   } // End of if-slse statement
+   if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in") 
+    {
+      window.location.href = "./productDetails1.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") === "logged-in")
+    {
+      window.location.href = "./addToCart1.html"; // Displays information in the Add To Cart page.
+    } // End of if-slse statement
+    else if(productDisplayMode === "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+    { 
+      window.location.href = "./productDetails.html"; // Displays information in Product Details page.
+    }
+    else if(productDisplayMode !== "ProductDetail" && window.localStorage.getItem("_loginState") !== "logged-in") 
+     {
+       window.location.href = "./addToCart.html"; // Displays information in the Add To Cart page.
+     } // End of if-slse statement 
    
 } // End of function captureSixteenthProductInfo()
 
@@ -2412,6 +2550,12 @@ function createNewCategory(event)
         .then(result => {
           console.log("Payment response:", result);
           alert("Payment response: " + result);
+
+          setTimeout(() => {
+
+           sendEmail(); // Requests for service to send sales order email notification alert to the product's merchant. 
+          
+              }, 1000); 
         })
         .catch(error => {
           console.error("Error:", error);
@@ -2420,6 +2564,68 @@ function createNewCategory(event)
    
     //  });
   } // End of function createNewTransaction(event)
+
+   /**
+     * Reads product data from the table, 
+     * determines the selected payment method,
+     * then does a POST (form-url-encoded) to /process-order.
+     */
+   function sendEmail()
+   {
+    // Objective: For Sending Sales Order Email Notification Alert to the Merchant
+    // ----------------------------------------------------------------------------
+
+     // 1. Grab product details from the table
+     const productName  = document.getElementById('tblCheckoutProductName').textContent.trim(); // Trim off all whitespaces -> trim()
+     const quantity     = document.getElementById('tblCheckoutProductQuantity').textContent.trim();
+     const sku          = document.getElementById('tblCheckoutProductSKU').textContent.trim();
+     const totalAmount  = document.getElementById('tblCheckoutGrandTotal').textContent.trim();
+ 
+     // 2. Determine which radio is selected
+     // const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+     const paymentMethod = "Stripe";
+ 
+     // 3. Send the data to /process-order as x-www-form-urlencoded
+     //    (Assuming your Spring Boot controller uses @PostMapping with @RequestParam)
+     const formData = new URLSearchParams({
+       product_name: productName,
+       quantity: quantity,
+       sku: sku,
+       total_amount: totalAmount,
+       payment_method: paymentMethod
+     });
+ 
+     fetch('http://localhost:8080/process-order', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+       body: formData.toString()
+     })
+     .then(response => {
+       if(response.ok) 
+        {
+         // If the server returns a normal 200/redirect
+         // you can navigate to a thank-you page or simply rely on the server's redirect.
+         // window.location.href = '/thank-you';
+         alert("Thank You for your order. The merchant has been notified for your order.");
+ 
+         setTimeout(() => 
+          {
+ 
+            window.location.href = "../../orderCompleted.html"; // Automatically navigates to the Order Completed page after 1 second.
+ 
+         }, 1000); 
+       } 
+       else 
+       {
+        // console.error('Error placing order:', response.statusText);
+         alert("Error placing order: " + response.statusText);
+       }
+     })
+     .catch(error => {
+       // console.error('Error placing order:', error);
+       alert("Error placing order:" + error);
+     });
+   } // End of function placeOrder() 
 
   // ******************************
   // * ACCOUNTS PROFILE DASHBOARD *
@@ -2460,6 +2666,9 @@ function createNewCategory(event)
          // const username = "Somename"; // Replace this with actual user data
          const username = window.localStorage.getItem("loginName");
          document.getElementById("dvUsername").textContent = username; // Dynamically Assigned.   
+         document.getElementById("txtEmail").value = window.localStorage.getItem("loginName"); // Pre-fills up the email field.
+         document.getElementById("txtCurrentPassword").value = window.localStorage.getItem("loginPassword"); // Pre-fills up the current password field.
+
 
   } // End of function displayDashboard()
 
@@ -2529,4 +2738,67 @@ function createNewCategory(event)
 
   } // End of function deleteProduct()
 
+  // *****************
+  // * DATA EXPORTER *
+  // *****************
+  /**
+   * Exports an HTML table (by ID) to a .xlsx file using SheetJS,
+   * and applies currency formatting to the "Amount" column.
+   * @param {string} tableID - The ID of the HTML table element.
+   * @param {string} filename - The base name of the .xlsx file (without extension).
+   */
+  function exportTableToExcel(tableID, filename = '') 
+  {
+    // 1. Convert the HTML table to a workbook
+    const table = document.getElementById(tableID);
+    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+    // 2. Get the first worksheet
+    const worksheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[worksheetName];
+
+    // 3. Determine the range of the worksheet
+    const range = XLSX.utils.decode_range(worksheet['!ref']);
+
+    // 4. Identify which column is "Amount"
+    //    In this example, we know "Amount" is the 5th column (index = 4, zero-based).
+    const amountColIndex = 4; // zero-based (col A=0, B=1, etc.)
+
+    // 5. Loop through each row, convert "S$xxx" to number, apply currency format
+    for (let row = range.s.r + 1; row <= range.e.r; row++)
+    {
+      // Build the cell reference, e.g. "E2", "E3", etc.
+      const cellAddress = { c: amountColIndex, r: row };
+      const cellRef = XLSX.utils.encode_cell(cellAddress);
+
+      // If the cell is missing, skip it
+      if(!worksheet[cellRef]) continue;
+
+      // 1. Get the raw cell value.
+      const cellValue = worksheet[cellRef].v;
+
+      // 2. Convert to string (so we can safely do .replace()).
+      const asString = String(cellValue);
+
+      // 3. Parse out numeric portion (strip out anything that's not digits or a dot).
+      const numericVal = parseFloat(asString.replace(/[^\d\.]/g, ''));
+
+      // 4. If parse fails, skip.
+      if (isNaN(numericVal)) continue;
+
+      // 5. Convert cell to numeric type, and apply a currency format:
+      worksheet[cellRef].t = 'n';  // 'n' for numeric
+      worksheet[cellRef].v = numericVal;
+      // worksheet[cellRef].z = '[$S$-en-SG] #,##0.00';
+      worksheet[cellRef].z = '$#,##0.00';
+      // You could also use: '¥#,##0.00', '$#,##0.00', etc.
+    } // End of forloop statement
+
+    // 6. Finally, write the workbook to a .xlsx file
+    XLSX.writeFile(workbook, (filename || 'export') + ".xlsx");
   
+    alert("Orders History Data Exported Successfully");
+  } // End of function exportTableToExcel(tableID, filename = '') 
+  
+
+ 

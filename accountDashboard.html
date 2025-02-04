@@ -105,7 +105,7 @@
           <a class="nav-link text-white" href="#" onclick="updateLoginLogoutState(document.getElementById('dvUsername').textContent)">Logout</a> <!-- Logout -->
         </nav>
       </div>
-
+      
       <!-- Main Content Area -->
       <div class="col-md-9">
         <!-- Dashboard Page -->
@@ -119,6 +119,7 @@
         <div id="edit-profile" class="content">
           <div class="p-4">
             <h3>Edit Profile</h3>
+            
             <form>
               <!-- Profile Name -->
               <div class="mb-3">
@@ -138,20 +139,32 @@
                 <input type="email" id="txtProfilePassword" name="txtProfilePassword" class="form-control" placeholder="Enter your email" title="Please provide your password here.">
               </div>
 
-              <button type="submit" class="btn btn-primary" title="Please click this button to save your new profile information.">Save Changes</button>
+              <button class="btn btn-primary" title="Please click this button to save your new profile information.">Save Changes</button>
             </form>
           </div>
         </div>
+
         <!-- Change Password Page -->
         <div id="change-password" class="content">
-          <div class="p-4">
+
+           <div class="p-4">
             <h3>Change Password</h3>
-            <form>
-              
+
+           <!-- ALERTS (hidden by default) -->
+          <div id="alertBox" class="alert d-none" role="alert"></div>
+
+            <form id="passwordForm">
+ 
+               <!-- Current Email -->
+               <div class="mb-3">
+                <label for="current-email" class="form-label">Email:</label>
+                <input type="text" id="txtEmail" name="txtEmail" class="form-control" placeholder="Enter email", title="Please provide your email here.">
+              </div>
+
               <!-- Current Password -->
               <div class="mb-3">
                 <label for="current-password" class="form-label">Current Password:</label>
-                <input type="text" id="txtCurrentPassword" name="txtCurrentPassword" class="form-control" placeholder="Enter current password", title="Please provide your current password here.">
+                <input type="text" id="txtCurrentPassword" name="txtCurrentPassword" class="form-control" placeholder="Enter current password" title="Please provide your current password here.">
               </div>
 
              <!-- New Password --> 
@@ -166,8 +179,9 @@
                 <input type="text" id="txtConfirmNewPassword" name="txtConfirmNewPassword" class="form-control" placeholder="Enter confirmed new password", title="Please provide your new password here again.">
               </div>
 
-              <button type="submit" class="btn btn-primary" title="Please click this button to save your changed password.">Save Changes</button>
-            </form>
+              <button type="submit" class="btn btn-primary" title="Please click this button to save your changed password." >Save Changes</button>
+            
+            </form>   
           </div>
         </div>
        
@@ -175,16 +189,25 @@
        
         <div id="orders" class="content">
           <div class="p-4">
-            <div class="container">
+            <div class="container-fluid">
               <h2 class="text-center">My Orders</h2>
-              <table class="table orders-table">
+            
+          <!-- Export Button -->
+           <div>   
+              <button class="btn btn-warning" onclick="exportTableToExcel('ordersTable', 'OrdersData')">
+                    Export to Excel
+            </button>
+          </div>
+          <!-- End of Export Button -->
+
+              <table class="table orders-table" id="ordersTable">
                   <thead>
                       <tr>
-                          <th>Order ID</th>
-                          <th>SKU</th>
-                          <th>Product Name</th>
-                          <th>Quantity</th>
-                          <th>Amount</th>
+                          <th class="text-center">Order ID</th>
+                          <th class="text-center">SKU</th>
+                          <th class="text-center">Product Name</th>
+                          <th class="text-center">Quantity</th>
+                          <th class="text-center">Amount ($)</th>
                       </tr>
                   </thead>
                   <tbody id="ordersTableBody">
@@ -207,11 +230,11 @@
       
                           data.forEach(order => {
                               let row = `<tr>
-                                  <td>${order.ordersid}</td>
-                                  <td>${order.sku}</td>
-                                  <td>${order.name}</td>
-                                  <td>${order.quantity}</td>
-                                  <td>$${order.amount}</td>        
+                                  <td class="text-center">${order.ordersid}</td>
+                                  <td class="text-center">${order.sku}</td>
+                                  <td class="text-center">${order.name}</td>
+                                  <td class="text-center">${order.quantity}</td>
+                                  <td class="text-center">$${order.amount}</td>        
                               </tr>`;
                               ordersTable.innerHTML += row;
                           });
@@ -219,6 +242,80 @@
                       .catch(error => console.error("Error fetching orders:", error));
               }
           </script>
+
+          <script>
+            // Intercept form submission
+                  const form = document.getElementById('passwordForm');
+                  const alertBox = document.getElementById('alertBox');
+
+                  form.addEventListener('submit', function(event) 
+                  {
+                    event.preventDefault(); // stop normal form POST
+                    
+                    // Build form data
+                    const formData = new FormData(form);
+                    
+                    // Post to Spring Boot
+                    fetch('http://localhost:8080/user/changePassword', {
+                      method: 'POST',
+                      body: formData
+                    })
+                    .then(async (response) => {
+                      const data = await response.json();
+                      
+                      if(!response.ok && data.error) 
+                      {
+                        // If we got a 400 or other error, show "danger" alert
+                        alertBox.classList.remove('d-none', 'alert-success');
+                        alertBox.classList.add('alert-danger');
+                        alertBox.textContent = data.error;
+
+                        setTimeout(() => {
+                        alertBox.classList.add('d-none'); // Programatically displays the Bootstrap Alert Box Message PlaceHolder.
+
+                        form.reset(); // Clears/Resets all the form's fields.
+                            
+                      }, 2000); 
+                      } 
+                      else 
+                      {
+                        // If 200 OK, we have "success" in data
+                        alertBox.classList.remove('d-none', 'alert-danger');
+                        alertBox.classList.add('alert-success');
+                        alertBox.textContent = data.success;
+                        
+                        // Optionally clear form fields
+                        form.reset();
+
+
+                        setTimeout(() => {
+                        alertBox.classList.add('d-none'); // Programatically displays the Bootstrap Alert Box Message PlaceHolder.
+
+                        // Flushes all the Web Browser's storage variable.
+                        // ------------------------------------------------
+                           window.localStorage.clear();
+                           window.sessionStorage.clear();
+
+                           alert("Please Login with the newly changed password.");
+
+                        // Then automatically navigate to the login page.
+                        // -----------------------------------------------
+                            window.location.href = "./login.html";
+                            
+                      }, 2000); 
+                      } // End of if-else statement 
+                      // Hide alert automatically after 2s
+                      
+                    })
+                    .catch((err) => {
+                      // If fetch failed altogether (network?), handle that
+                      console.error(err);
+                      alertBox.classList.remove('d-none', 'alert-success');
+                      alertBox.classList.add('alert-danger');
+                      alertBox.textContent = 'Something went wrong!';
+                    });
+                  });
+              </script>
           </div>
         </div> 
 
@@ -229,6 +326,8 @@
 
 <!-- [JAVASCRIPT] -->
  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- Bootstrap Bundle JS -->
 <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 
@@ -245,10 +344,16 @@
 <script src="./assets/js/scripts.js"></script>  
 
 <!-- Custom Javascript -->
+
 <script defer src="./assets/js/pets_scripts.js"></script>
 
+<!-- SheetJS library (via CDN) For Microsoft Excel Data Export Functionality --> 
+<script 
+  src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.2/xlsx.full.min.js"
+  integrity="sha512-x6z... (etc. etc.)"
+  crossorigin="anonymous"
+></script>
+
 <!-- End of Javascript -->
-
-
   </body>
 </html>
