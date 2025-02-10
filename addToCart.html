@@ -195,7 +195,7 @@
                                 <input type="button" value="+" class="plus" onclick="updateShoppingCart('Plus');">
                               </div></td>
                               	<td class="product-subtotal" id="tblProductTotalCost" data-title="Total" >$90.00</td>
-                                <td class="product-remove" data-title="Remove"><a href="#"><i class="ti-close"></i></a></td>
+                                <td class="product-remove" data-title="Remove"><a href="#"><i class="ti-close" onclick="removeProductQuantity();"></i></a></td>
                             </tr>
                          
                         </tbody>
@@ -514,7 +514,7 @@
                             <tbody>
                                 <tr>
                                     <td class="cart_total_label">Cart Subtotal</td>
-                                    <td class="cart_total_amount" id="lblCartSubTotal">$349.00</td>
+                                    <td class="cart_total_amount" id="tblCartSubTotal">$349.00</td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Shipping</td>
@@ -522,7 +522,7 @@
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">Total</td>
-                                    <td class="cart_total_amount" id="lblCartGrandTotal"><strong>$349.00</strong></td>
+                                    <td class="cart_total_amount" id="tblCartGrandTotal"><strong>$349.00</strong></td>
                                 </tr>
                             </tbody>
                         </table>

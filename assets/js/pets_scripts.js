@@ -212,8 +212,31 @@ function verify_signIn(event)
       
       const email = window.localStorage.getItem("loginName"); // Retrieves the login email.
       const password = window.localStorage.getItem("loginPassword"); // Retrieves the login password.
+      const errMessage = "Sorry, this login is only non-administrator.";
+
+      if(email === "coloss323@gmail.com")
+      {
+         // alert("Sorry, this login is only non-administrator.");
+
+         document.getElementById("loginMessage").innerHTML = `
+         <div class="alert alert-danger" role="alert">
+           ${errMessage}
+         </div>
+       `;
+
+         setTimeout(() => {
+
+         document.getElementById("loginForm").reset();
+    
+         window.location.href = "./login.html";
+
+        }, 2000); 
+        
+      } 
       
-      const loginData = 
+      else
+      {
+        const loginData = 
       {
         email: email,
         password: password
@@ -274,7 +297,7 @@ function verify_signIn(event)
       });
    // });
 
-    // Alert Message Clearing Routine
+    // Alert Message Clearing Routine (during an incorrect Login Credentials Provision)
     // --------------------------------
      setTimeout(() => {
 
@@ -284,6 +307,9 @@ function verify_signIn(event)
      document.getElementById("loginForm").reset();
     
     }, 3000); 
+      
+  } // End of if-else statement
+      
 
 } // End of function verify_signIn()
 
@@ -404,7 +430,7 @@ function displayAdminProfileName()
    
 } // End of function displayAdminProfileName()
 
-function verify_admin_signIn()
+function verify_admin_signIn(event)
 {
  // Objective: For verification of the provided crentials. (Administrator Mode)
  // ------------------------------------------------------------------------------
@@ -425,79 +451,100 @@ function verify_admin_signIn()
       
   const email = window.localStorage.getItem("loginName"); // Retrieves the login email.
   const password = window.localStorage.getItem("loginPassword"); // Retrieves the login password.
-  
-  const loginData = 
-  {
-    email: email,
-    password: password
-  };
-  
-  fetch("http://localhost:8080/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(loginData)
-  })
-  .then(response => {
-    if (response.ok) {
-      // On success, server returns JSON: { "message": "...", "role": "..." }
-      return response.json();
-    } else {
-      // On error, server returns plain text (e.g., "Invalid credentials!")
-      return response.text().then(errorText => {
-        throw new Error(errorText);
+  const errMessage = "Sorry, only administrators are allowed to login here.";
+
+      if(email !== "coloss323@gmail.com")
+      {
+         
+         document.getElementById("loginMessage").innerHTML = `
+         <div class="alert alert-danger" role="alert">
+           ${errMessage}
+         </div>
+       `;
+
+         setTimeout(() => {
+
+         document.getElementById("loginForm").reset();
+         window.location.href = "./loginAdmin.html";
+
+        }, 2000); 
+        
+    } 
+    else
+    {
+      const loginData = 
+      {
+        email: email,
+        password: password
+      };
+      
+      fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+      })
+      .then(response => {
+        if (response.ok) {
+          // On success, server returns JSON: { "message": "...", "role": "..." }
+          return response.json();
+        } else {
+          // On error, server returns plain text (e.g., "Invalid credentials!")
+          return response.text().then(errorText => {
+            throw new Error(errorText);
+          });
+        }
+      })
+      .then(data => {
+        // data.message, data.role
+        document.getElementById("loginMessage").innerHTML = `
+          <div class="alert alert-success" role="alert">
+            ${data.message} <br />
+            Welcome, <strong>${data.role}</strong>!
+          </div>
+        `;
+    
+        window.localStorage.setItem("role", `${data.role}`);
+        window.localStorage.setItem("loginName", `${data.role}`);
+       
+        // Alert Message Clearing Routine
+        // --------------------------------
+           setTimeout(() => {
+    
+            document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+      
+           // Optionally clear form for re-entry
+           document.getElementById("loginForm").reset();
+           window.localStorage.setItem("_loginState","success");
+           updateLoginStatus("success");
+      
+          }, 3000); 
+    
+        // Optionally redirect after a short delay:
+        // setTimeout(() => { window.location.href = "/home.html"; }, 2000);
+      })
+      .catch(error => {
+        // If we get here, it's an error scenario
+        document.getElementById("loginMessage").innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            ${error.message}
+          </div>
+        `;
       });
-    }
-  })
-  .then(data => {
-    // data.message, data.role
-    document.getElementById("loginMessage").innerHTML = `
-      <div class="alert alert-success" role="alert">
-        ${data.message} <br />
-        Welcome, <strong>${data.role}</strong>!
-      </div>
-    `;
-
-    window.localStorage.setItem("role", `${data.role}`);
-    window.localStorage.setItem("loginName", `${data.role}`);
-   
-    // Alert Message Clearing Routine
-    // --------------------------------
-       setTimeout(() => {
-
-        document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
-  
-       // Optionally clear form for re-entry
-       document.getElementById("loginForm").reset();
-       window.localStorage.setItem("_loginState","success");
-       updateLoginStatus("success");
-  
-      }, 3000); 
-
-    // Optionally redirect after a short delay:
-    // setTimeout(() => { window.location.href = "/home.html"; }, 2000);
-  })
-  .catch(error => {
-    // If we get here, it's an error scenario
-    document.getElementById("loginMessage").innerHTML = `
-      <div class="alert alert-danger" role="alert">
-        ${error.message}
-      </div>
-    `;
-  });
-
-   // Alert Message Clearing Routine
-    // --------------------------------
-    setTimeout(() => {
-
-      document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
-  
-       // Optionally clear form
-       document.getElementById("loginForm").reset();
-  
-      }, 3000); 
-  
+    
+       // Alert Message Clearing Routine
+        // --------------------------------
+        setTimeout(() => {
+    
+          document.getElementById("loginMessage").innerHTML = ""; // Auto-hide alert after 3 seconds
+      
+           // Optionally clear form
+           document.getElementById("loginForm").reset();
+      
+          }, 3000); 
+    }  // End of if=else statement
+    
 } // End of function verify_admin_signIn()
 
 function updateLoginLogoutState(profileName)
@@ -529,7 +576,7 @@ function getLoginStatus()
    // window.localStorage.setItem("_loginState","success"); // Change the link to Logout, if sign-in is succesful.   
     loginStatus = window.localStorage.getItem('_loginState');
 
-    if(loginStatus === "success")
+    if(loginStatus === "success" || loginStatus === "logged-in" )
     {
       document.querySelector("#lnkLogin").textContent = "Logout"; // Displays the Logout Link.
     }
@@ -640,14 +687,14 @@ function dashboardRoute(profileUser)
     } 
     else
     {
-      alert("Sorry, you have not entitled to view this.");
+      alert("Sorry, you are not entitled to view this content.");
     } // End of if-else statement
 
 } // End of function dashboardRoute(profileUser)
 
 function showAlert(type, message) 
 {
-  const alertPlaceholder = document.getElementById("alertPlaceholder");
+  const alertPlaceholder = document.getElementById("alertContainer");
   const alertDiv = document.createElement("div"); // Create the alert div
  
   alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
@@ -659,8 +706,8 @@ function showAlert(type, message)
   `;
   // Clear any previous alert, then append the new alert
   
-  alertPlaceholder.innerHTML = "";
-  alertPlaceholder.appendChild(alertDiv);
+//  alertPlaceholder.innerHTML = "";
+//  alertPlaceholder.appendChild(alertDiv);
 } // End of function showAlert(type, message)
 
 function registerUser(event) 
@@ -1728,40 +1775,53 @@ function captureNinethProductInfo(productDisplayMode)
     window.localStorage.setItem("prodName",prod_name); // Stores nineth product name in localstorage.
     window.localStorage.setItem("prodPrice",prod_price); // Stores nineth product price in localstorage.
     window.localStorage.setItem("prodWeight",prod_weight); // Stores nineth product weight in localstorage.
-    window.localStorage.setItem("prodSKU", "CATT2897"); // Stores the nineth product SKU in localstorage.
-    window.localStorage.setItem("prodCategory","Cat Treats"); // Stores the nineth product category information in localstorage.
-    window.localStorage.setItem("prodTag1","Feline Treats"); // Stores the nineth product tag 1 information in localstorage.
-    window.localStorage.setItem("prodTag2","Tasty Cat Treats"); // Stores the nineth product tag 2 information in localstorage.
+    window.localStorage.setItem("prodSKU", "HAMFD0186"); // Stores the nineth product SKU in localstorage.
+    window.localStorage.setItem("prodCategory","Hamster Food"); // Stores the nineth product category information in localstorage.
+    window.localStorage.setItem("prodTag1","Furries Treats"); // Stores the nineth product tag 1 information in localstorage.
+    window.localStorage.setItem("prodTag2","Small Animal Treats"); // Stores the nineth product tag 2 information in localstorage.
     window.localStorage.setItem("prodTag3","Animal Edibles"); // Stores the nineth product tag 3 information in localstorage.
     window.localStorage.setItem("prodTag4","Furries Food"); // Stores the nineth product tag 4 information in localstorage.
-    window.localStorage.setItem("prodRetailPrice","$28.80"); // Stores the nineth product retail pricing information in localstorage.
-    window.localStorage.setItem("prodPercentDiscount","52.43% Off"); // Stores the nineth product retail pricing information in localstorage.
-    window.localStorage.setItem("prodGA1","Crude Protein (min.) TBA"); // Stores the nineth product GA1 information in localstorage.
-    window.localStorage.setItem("prodGA2","Crude Fat (min.) TBA"); // Stores the nineth product GA2 information in localstorage.
-    window.localStorage.setItem("prodGA3","Crude Fiber (max.) TBA"); // Stores the nineth product GA3 information in localstorage.
+    window.localStorage.setItem("prodRetailPrice","$9.50"); // Stores the nineth product retail pricing information in localstorage.
+    window.localStorage.setItem("prodPercentDiscount","17.39% Off"); // Stores the nineth product retail pricing information in localstorage.
+    window.localStorage.setItem("prodGA1","Crude Protein (min.)L 12.00%"); // Stores the nineth product GA1 information in localstorage.
+    window.localStorage.setItem("prodGA2","Crude Fat (min.) 4.00%"); // Stores the nineth product GA2 information in localstorage.
+    window.localStorage.setItem("prodGA3","Crude Fiber (max.) 10.00%"); // Stores the nineth product GA3 information in localstorage.
     window.localStorage.setItem("prodGA4","Moisture (max.) TBA"); // Stores the nineth product GA4 information in localstorage.
 
     // Nineth Product Description Content
     // ----------------------------------
    
    let ninethProductContent = `
-   <p>The Aatas Cat Tantalizing Tuna range offers a variety of flavours to cater to different taste buds. The formulas are natural, tasty and rich, yet healthy for cats because they are low in both fat and calories.</p>
+   <p>Happi Hamster is made with a blend of seeds, grains and added nutrients.
+      It features corn, fruits, sunflower seeds, buckwheat, wheat, soybean and vegetables that will make hamsters happy.
+      This food is enriched with Vitamin C and helps build strong immunity and prevents common infections.</p>
  
    <h5>Contains</h5>
    <ul>
-     <li>Duck</li>
+     <li>Corn</li>
+     <li>Wheat</li>
+     <li>Sunflower</li>
+     <li>Toasted Corn Flakes</li>
+     <li>Oat Groats</li>
+     <li>Dehydrated Alfalfa Meal</li>
+     <li>Dehulled Soybean Meal</li>
+     <li>Ground Corn</li>
+     <li>Wrinkled Peas</li>
+     <li>Ground Oats</li>
+     <li>Ground Wheat</li>
+     <li>Buckwheat/li>
+     <li>Dried Fruit and Vegetables</li>
+     <li>Fortified Hamster Kibbles</li>
     </ul>  
 
     <br/>
 
      <h5>Benefits</h5>
        <ul>
-         <li>Air-dried and 100% natural.</li>
-         <li>0% antibiotics or added hormones.</li>
-         <li>Made with a single ingredient.</li>
-         <li>No food colouring or artificial preservatives.</li>
-         <li>Made in USA.</li>
-         <li>For all life stages.</li>
+         <li>Fortified with nutrients.</li>
+         <li>Features a blend of seeds and grains.</li>
+         <li>Promotes healthy coat.</li>
+         <li>Reduces shedding and prevents skin allergies.</li>
       </ul>  
  `;
 
@@ -1801,44 +1861,47 @@ function captureTenthProductInfo(productDisplayMode)
    prod_price = document.getElementById("tenthProductPrice").textContent; // Captures tenth product price
    prod_weight = document.getElementById("tenthProductWeight").textContent; // Captures tentth product weight.
   
-   window.localStorage.setItem("prodName",prod_image); // Stores tenth product name in localstorage.
+   window.localStorage.setItem("prodImage",prod_image); // Stores tenth product name in localstorage.
    window.localStorage.setItem("prodName",prod_name); // Stores tenth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores tenth product price in localstorage.
    window.localStorage.setItem("prodWeight",prod_weight); // Stores tenth product weight in localstorage.
-   window.localStorage.setItem("prodSKU", "CATT2897"); // Stores the tenth product SKU in localstorage.
-   window.localStorage.setItem("prodCategory","Cat Treats"); // Stores the tenth product category information in localstorage.
-   window.localStorage.setItem("prodTag1","Feline Treats"); // Stores the tenth product tag 1 information in localstorage.
-   window.localStorage.setItem("prodTag2","Tasty Cat Treats"); // Stores the tenth product tag 2 information in localstorage.
+   window.localStorage.setItem("prodSKU", "HAMFD1597"); // Stores the tenth product SKU in localstorage.
+   window.localStorage.setItem("prodCategory","Hamster Food"); // Stores the tenth product category information in localstorage.
+   window.localStorage.setItem("prodTag1","Furry Treats"); // Stores the tenth product tag 1 information in localstorage.
+   window.localStorage.setItem("prodTag2","Small Animal Treats"); // Stores the tenth product tag 2 information in localstorage.
    window.localStorage.setItem("prodTag3","Animal Edibles"); // Stores the tenth product tag 3 information in localstorage.
-   window.localStorage.setItem("prodTag4","Furries Food"); // Stores the tenth product tag 4 information in localstorage.
-   window.localStorage.setItem("prodRetailPrice","$28.80"); // Stores the tenth product retail pricing information in localstorage.
-   window.localStorage.setItem("prodPercentDiscount","52.43% Off"); // Stores the tenth product retail pricing information in localstorage.
-   window.localStorage.setItem("prodGA1","Crude Protein (min.) TBA"); // Stores the tenth product GA1 information in localstorage.
-   window.localStorage.setItem("prodGA2","Crude Fat (min.) TBA"); // Stores the tenth product GA2 information in localstorage.
-   window.localStorage.setItem("prodGA3","Crude Fiber (max.) TBA"); // Stores the tenth product GA3 information in localstorage.
-   window.localStorage.setItem("prodGA4","Moisture (max.) TBA"); // Stores the tenth product GA4 information in localstorage.
+   window.localStorage.setItem("prodTag4","100% Pure"); // Stores the tenth product tag 4 information in localstorage.
+   window.localStorage.setItem("prodRetailPrice","$20.00"); // Stores the tenth product retail pricing information in localstorage.
+   window.localStorage.setItem("prodPercentDiscount","22.50% Off"); // Stores the tenth product retail pricing information in localstorage.
+   window.localStorage.setItem("prodGA1","Crude Protein (min.) 11.10%"); // Stores the tenth product GA1 information in localstorage.
+   window.localStorage.setItem("prodGA2","Crude Fat (min.) 2.30%"); // Stores the tenth product GA2 information in localstorage.
+   window.localStorage.setItem("prodGA3","Crude Fiber (max.) 9.30%"); // Stores the tenth product GA3 information in localstorage.
+   window.localStorage.setItem("prodGA4","Moisture (max.) 11.00%"); // Stores the tenth product GA4 information in localstorage.
 
    // Tenth Product Description Content
    // ----------------------------------
   
   let tenthProductContent = `
-  <p>The Aatas Cat Tantalizing Tuna range offers a variety of flavours to cater to different taste buds. The formulas are natural, tasty and rich, yet healthy for cats because they are low in both fat and calories.</p>
+  <p>Marukan clean food mix formulated with fermented soybean isoflavone for a golden hamster is a comprehensive, balanced nutritional diet that supports the daily health of hamsters by keeping them "beautiful from the inside out.</p>
 
   <h5>Contains</h5>
   <ul>
-    <li>Duck</li>
+    <li>Fermented soybean isoflavones = Antioxidant + Anti-glycation</li>
+    <li>Additive-free = no preservatives, colorings, or sugar</li>
+    <li>Ten carefully selected kinds of vegetables and fruits are added.</li>
+    <li>Comprehensive, balanced nutritional diet.</li>
+    <li>No preservatives, colorings, or sugar.</li>
    </ul>  
 
    <br/>
 
-    <h5>Benefits</h5>
-      <ul>
-        <li>Air-dried and 100% natural.</li>
-        <li>0% antibiotics or added hormones.</li>
-        <li>Made with a single ingredient.</li>
-        <li>No food colouring or artificial preservatives.</li>
-        <li>Made in USA.</li>
-        <li>For all life stages.</li>
+    <h5>Ingredients</h5>
+     <ul>
+        <li>Pellets (wheat flour, hominy feed, corn gluten feed, fermented grain extract)</li>
+        <li>Fruits (apples, goji berries).</li>
+        <li>Sugars (glucose).</li>
+        <li>Fermented Soybean Extract.</li>
+        <li>Made in Japan / Product of Japan.</li>
      </ul>  
 `;
 
@@ -1878,45 +1941,36 @@ function captureEleventhProductInfo(productDisplayMode)
    prod_price = document.getElementById("eleventhProductPrice").textContent; // Captures eleventh product price*
    prod_weight = document.getElementById("eleventhProductWeight").textContent; // Captures eleventh product weight.
  
-   window.localStorage.setItem("prodName",prod_image); // Stores eleventh product name in localstorage.
+   window.localStorage.setItem("prodImage",prod_image); // Stores eleventh product name in localstorage.
    window.localStorage.setItem("prodName",prod_name); // Stores eleventh product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores eleventh product price in localstorage.
    window.localStorage.setItem("prodWeight",prod_weight); // Stores eleventh product weight in localstorage.
-   window.localStorage.setItem("prodSKU", "CATT2897"); // Stores the eleventh product SKU in localstorage.
-   window.localStorage.setItem("prodCategory","Cat Treats"); // Stores the eleventh product category information in localstorage.
-   window.localStorage.setItem("prodTag1","Feline Treats"); // Stores the eleventh product tag 1 information in localstorage.
-   window.localStorage.setItem("prodTag2","Tasty Cat Treats"); // Stores the eleventh product tag 2 information in localstorage.
-   window.localStorage.setItem("prodTag3","Animal Edibles"); // Stores the eleventh product tag 3 information in localstorage.
-   window.localStorage.setItem("prodTag4","Furries Food"); // Stores the eleventh product tag 4 information in localstorage.
-   window.localStorage.setItem("prodRetailPrice","$28.80"); // Stores the eleventh product retail pricing information in localstorage.
-   window.localStorage.setItem("prodPercentDiscount","52.43% Off"); // Stores the eleventh product retail pricing information in localstorage.
-   window.localStorage.setItem("prodGA1","Crude Protein (min.) TBA"); // Stores the eleventh product GA1 information in localstorage.
-   window.localStorage.setItem("prodGA2","Crude Fat (min.) TBA"); // Stores the eleventh product GA2 information in localstorage.
-   window.localStorage.setItem("prodGA3","Crude Fiber (max.) TBA"); // Stores the eleventh product GA3 information in localstorage.
-   window.localStorage.setItem("prodGA4","Moisture (max.) TBA"); // Stores the eleventh product GA4 information in localstorage.
+   window.localStorage.setItem("prodSKU", "HAMTR1168"); // Stores the eleventh product SKU in localstorage.
+   window.localStorage.setItem("prodCategory","Hamster Treats"); // Stores the eleventh product category information in localstorage.
+   window.localStorage.setItem("prodTag1","Small Animal Treats"); // Stores the eleventh product tag 1 information in localstorage.
+   window.localStorage.setItem("prodTag2","Tasty Animal Treats"); // Stores the eleventh product tag 2 information in localstorage.
+   window.localStorage.setItem("prodTag3","Furries Treats"); // Stores the eleventh product tag 3 information in localstorage.
+   window.localStorage.setItem("prodTag4","Tiny Bites"); // Stores the eleventh product tag 4 information in localstorage.
+   window.localStorage.setItem("prodRetailPrice","$26.20"); // Stores the eleventh product retail pricing information in localstorage.
+   window.localStorage.setItem("prodPercentDiscount","16.41% Off"); // Stores the eleventh product retail pricing information in localstorage.
+   window.localStorage.setItem("prodGA1","Crude Protein (min.) 7.00%"); // Stores the eleventh product GA1 information in localstorage.
+   window.localStorage.setItem("prodGA2","Crude Fat (min.) 1.50%"); // Stores the eleventh product GA2 information in localstorage.
+   window.localStorage.setItem("prodGA3","Crude Fiber (max.) 32.00%"); // Stores the eleventh product GA3 information in localstorage.
+   window.localStorage.setItem("prodGA4","Moisture (max.) 15.00%"); // Stores the eleventh product GA4 information in localstorage.
 
    // Eleventh Product Description Content
    // ----------------------------------
   
   let eleventhProductContent = `
-  <p>The Aatas Cat Tantalizing Tuna range offers a variety of flavours to cater to different taste buds. The formulas are natural, tasty and rich, yet healthy for cats because they are low in both fat and calories.</p>
+  <p>Looking for a good, basic grass hay with high quality nutrition, and a fresh fragrance that's irresistible to small herbivores? Oxbow Western Timothy Hay is the ideal long-strand fiber source for keeping small animal digestive tracts functioning properly. Our most popular grass hay-with high fiber, low protein and low calcium content-is widely recommended by veterinarians. Oxbow Animal Health was the first pet food company to introduce timothy hay as a staple in the small animal diet. It is now an industry standard..</p>
 
   <h5>Contains</h5>
   <ul>
-    <li>Duck</li>
-   </ul>  
+    <li>100% Timothy Hay</li>
+    <li>Preservative and additive free</li>
+    <li>Loose hay contains stems, leaves, and limited seed heads</li>
+  </ul>  
 
-   <br/>
-
-    <h5>Benefits</h5>
-      <ul>
-        <li>Air-dried and 100% natural.</li>
-        <li>0% antibiotics or added hormones.</li>
-        <li>Made with a single ingredient.</li>
-        <li>No food colouring or artificial preservatives.</li>
-        <li>Made in USA.</li>
-        <li>For all life stages.</li>
-     </ul>  
 `;
 
 // 2. Save it to localStorage:
@@ -1959,41 +2013,30 @@ function captureTwelvethProductInfo(productDisplayMode)
    window.localStorage.setItem("prodName",prod_name); // Stores twelveth product name in localstorage.
    window.localStorage.setItem("prodPrice",prod_price); // Stores twelveth product price in localstorage.
    window.localStorage.setItem("prodWeight",prod_weight); // Stores twelveth product weight in localstorage.
-   window.localStorage.setItem("prodSKU", "CATT2897"); // Stores the twelveth product SKU in localstorage.
-   window.localStorage.setItem("prodCategory","Cat Treats"); // Stores the twelveth product category information in localstorage.
-   window.localStorage.setItem("prodTag1","Feline Treats"); // Stores the twelveth product tag 1 information in localstorage.
-   window.localStorage.setItem("prodTag2","Tasty Cat Treats"); // Stores the twelveth product tag 2 information in localstorage.
-   window.localStorage.setItem("prodTag3","Animal Edibles"); // Stores the twelveth product tag 3 information in localstorage.
-   window.localStorage.setItem("prodTag4","Furries Food"); // Stores the twelveth product tag 4 information in localstorage.
-   window.localStorage.setItem("prodRetailPrice","$28.80"); // Stores the twelveth product retail pricing information in localstorage.
-   window.localStorage.setItem("prodPercentDiscount","52.43% Off"); // Stores the twelveth product retail pricing information in localstorage.
-   window.localStorage.setItem("prodGA1","Crude Protein (min.) TBA"); // Stores the twelveth product GA1 information in localstorage.
-   window.localStorage.setItem("prodGA2","Crude Fat (min.) TBA"); // Stores the twelveth product GA2 information in localstorage.
-   window.localStorage.setItem("prodGA3","Crude Fiber (max.) TBA"); // Stores the twelveth product GA3 information in localstorage.
-   window.localStorage.setItem("prodGA4","Moisture (max.) TBA"); // Stores the twelveth product GA4 information in localstorage.
+   window.localStorage.setItem("prodSKU", "HAMFD2149"); // Stores the twelveth product SKU in localstorage.
+   window.localStorage.setItem("prodCategory","Hamster Treats"); // Stores the twelveth product category information in localstorage.
+   window.localStorage.setItem("prodTag1","Furries Treats"); // Stores the twelveth product tag 1 information in localstorage.
+   window.localStorage.setItem("prodTag2","Small Animal Treats"); // Stores the twelveth product tag 2 information in localstorage.
+   window.localStorage.setItem("prodTag3","Tasty Animal Treats"); // Stores the twelveth product tag 3 information in localstorage.
+   window.localStorage.setItem("prodTag4","Tiny Food"); // Stores the twelveth product tag 4 information in localstorage.
+   window.localStorage.setItem("prodRetailPrice","$26.20"); // Stores the twelveth product retail pricing information in localstorage.
+   window.localStorage.setItem("prodPercentDiscount","16.41% Off"); // Stores the twelveth product retail pricing information in localstorage.
+   window.localStorage.setItem("prodGA1","Crude Protein (min.) 7.00%"); // Stores the twelveth product GA1 information in localstorage.
+   window.localStorage.setItem("prodGA2","Crude Fat (min.) 1.50%"); // Stores the twelveth product GA2 information in localstorage.
+   window.localStorage.setItem("prodGA3","Crude Fiber (max.) 32.00%"); // Stores the twelveth product GA3 information in localstorage.
+   window.localStorage.setItem("prodGA4","Moisture (max.) 15.00%"); // Stores the twelveth product GA4 information in localstorage.
 
    // Twelveth Product Description Content
    // ----------------------------------
   
   let twelvethProductContent = `
-  <p>The Aatas Cat Tantalizing Tuna range offers a variety of flavours to cater to different taste buds. The formulas are natural, tasty and rich, yet healthy for cats because they are low in both fat and calories.</p>
+  <p>Animals love the sweet smell and taste of leafy Oxbow Orchard Grass Hay, and that makes it a good addition to an herbivore's healthy meal plan. Like other long-strand grass hays, the soft-textured Orchard Grass Hay is high in fiber, low in protein and supports the health of small herbivores by stimulating digestion, preventing obesity and making mealtime more appealing. Mix Orchard Grass Hay with other Oxbow grass hays to create a sweet and nutritious combination. Sizes: 15 oz, 40 oz, 9 lb, 25 lb, 50 lb..</p>
 
   <h5>Contains</h5>
   <ul>
-    <li>Duck</li>
+    <li>100% Orchard Grass Preservative and Additive Free</li>
+    <li>stems, leaves, and limited seed heads</li>
    </ul>  
-
-   <br/>
-
-    <h5>Benefits</h5>
-      <ul>
-        <li>Air-dried and 100% natural.</li>
-        <li>0% antibiotics or added hormones.</li>
-        <li>Made with a single ingredient.</li>
-        <li>No food colouring or artificial preservatives.</li>
-        <li>Made in USA.</li>
-        <li>For all life stages.</li>
-     </ul>  
 `;
 
 // 2. Save it to localStorage:
@@ -2246,18 +2289,32 @@ function displayShoppingCart()  // Targets Add to Cart page
 {
  // Objective: Display the list of purchased products information inside the shopping cart.
  // ----------------------------------------------------------------------------------------
-     document.querySelector("#tblProductImage").src = window.localStorage.getItem("prodImage");  
-     document.querySelector("#tblProductName").innerText = window.localStorage.getItem("prodName");
-     document.querySelector("#tblProductPrice").innerText = window.localStorage.getItem("prodPrice");
-     document.querySelector("#tblProductTotalCost").innerText = window.localStorage.getItem("prodPrice");
-     document.querySelector("#lblCartSubTotal").innerText = window.localStorage.getItem("prodPrice");
-     document.querySelector("#lblCartGrandTotal").innerText = window.localStorage.getItem("prodPrice");
+
+  if(window.localStorage.getItem("checkOutFlag") === "1") // Flag: 1 = Route Back from Checkout Page; Otherwise it is not.
+  {
+    document.querySelector("#tblProductImage").src = window.localStorage.getItem("prodImage");  
+    document.querySelector("#tblProductName").innerText = window.localStorage.getItem("prodName");
+    document.querySelector("#txtProductQuantity").value = window.localStorage.getItem("prodQuantity");
+    document.querySelector("#tblProductPrice").innerText = window.localStorage.getItem("prodPrice");
+    document.querySelector("#tblProductTotalCost").innerText = window.localStorage.getItem("prodGrandTotal");
+    document.querySelector("#tblCartSubTotal").innerText = window.localStorage.getItem("prodGrandTotal");
+    document.querySelector("#tblCartGrandTotal").innerText = window.localStorage.getItem("prodGrandTotal"); 
+  }
+  else
+  {
+    document.querySelector("#tblProductImage").src = window.localStorage.getItem("prodImage");  
+    document.querySelector("#tblProductName").innerText = window.localStorage.getItem("prodName");
+    document.querySelector("#tblProductPrice").innerText = window.localStorage.getItem("prodPrice");
+    document.querySelector("#tblProductTotalCost").innerText = window.localStorage.getItem("prodPrice");
+    document.querySelector("#tblCartSubTotal").innerText = window.localStorage.getItem("prodPrice");
+    document.querySelector("#tblCartGrandTotal").innerText = window.localStorage.getItem("prodPrice"); 
+  } // End of if-else statement
 
    // For Dropdown Product Cart List
    // -------------------------------
-     document.querySelector("#drpDwnProductName").innerText =  window.localStorage.getItem("prodName");
+   /*  document.querySelector("#drpDwnProductName").innerText =  window.localStorage.getItem("prodName");
      document.querySelector("#drpDwnProductPrice").innerText =  window.localStorage.getItem("prodPrice");
-     document.querySelector("#drpDwnFooterProductPrice").innerText =  window.localStorage.getItem("prodPrice");
+     document.querySelector("#drpDwnFooterProductPrice").innerText =  window.localStorage.getItem("prodPrice"); */
       
   } // End of function displayShoppingCart()
   
@@ -2290,8 +2347,8 @@ function displayShoppingCart()  // Targets Add to Cart page
       prod_total_cost = "$" + prod_total_cost.toFixed(2).toString();
      
       document.querySelector("#tblProductTotalCost").innerText = prod_total_cost;
-      document.querySelector("#lblCartSubTotal").innerText = document.querySelector("#tblProductTotalCost").innerText;
-      document.querySelector("#lblCartGrandTotal").innerText = document.querySelector("#tblProductTotalCost").innerText;
+      document.querySelector("#tblCartSubTotal").innerText = prod_total_cost;
+      document.querySelector("#tblCartGrandTotal").innerText = prod_total_cost;
 
      // Saves the comuputed Grand Total price in localstorage
      // ------------------------------------------------------
@@ -2301,10 +2358,41 @@ function displayShoppingCart()  // Targets Add to Cart page
        
   } // End of function updateShoppingCart()
 
+  function removeProductQuantity()
+  {
+   // Objective: For removing all the items in the cart.
+   // --------------------------------------------------
+
+      prod_quantity = document.querySelector("#txtProductQuantity").value = "1";
+      prod_quantity = Number(prod_quantity); // Converts the product quantity to another data type.
+      
+      
+      prod_price = document.querySelector("#tblProductPrice").innerText.toString();
+      prod_price = Number(prod_price.slice(1,prod_price.length));
+
+      prod_total_cost = (prod_quantity * prod_price);
+      prod_sub_total_cost = prod_total_cost.toFixed(2).toString();
+      prod_total_cost = "$" + prod_total_cost.toFixed(2).toString();
+     
+      document.querySelector("#tblProductTotalCost").innerText = prod_total_cost;
+      document.querySelector("#tblCartSubTotal").innerText = prod_total_cost;
+      document.querySelector("#tblCartGrandTotal").innerText = prod_total_cost;
+
+     // Saves the comuputed Grand Total price in localstorage
+     // ------------------------------------------------------
+        window.localStorage.setItem("prodQuantity", prod_quantity); // Quantity
+        window.localStorage.setItem("prodGrandTotal", prod_total_cost); // Grand-Total
+        window.localStorage.setItem("prodSubTotal", prod_sub_total_cost);
+
+
+  } // End of function removeProductQuantity()
+
   function updateCheckout()
   {
     // Objective: Provide and upate the actually total product purchases expenditure at Checkout page.
     // ------------------------------------------------------------------------------------------------
+
+    window.localStorage.setItem("checkOutFlag","1");
    
     document.querySelector("#tblCheckoutProductName").innerText = window.localStorage.getItem("prodName"); // Product Name
     document.querySelector("#tblCheckoutProductName").innerText = document.querySelector("#tblCheckoutProductName").innerText + " ";
