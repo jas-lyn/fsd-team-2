@@ -338,10 +338,12 @@ function updateCategory(id, categoryData) {
     return response.json();
   })
   .then(updated => {
-    showAlert('Category updated successfully!', 'success');
+    showAlert1('Category updated successfully!', 'success');
+  //  alert("Category updated successfully!"); // Failover
   })
   .catch(error => {
-    showAlert('Error updating category: ' + error.message, 'danger');
+    showAlert1('Error updating category: ' + error.message, 'danger');
+   // alert('Error updating category: ' + error.message);
   });
 }
 
@@ -359,15 +361,15 @@ function deleteCategory(id) {
     if (row) {
       row.remove();
     }
-    showAlert('Category deleted successfully!', 'success');
+    showAlert1('Category deleted successfully!', 'success');
   })
   .catch(error => {
-    showAlert('Error deleting category: ' + error.message, 'danger');
+    showAler1t('Error deleting category: ' + error.message, 'danger');
   });
 }
 
 // Show a Bootstrap alert message
-function showAlert(message, type) {
+function showAlert1(message, type) {
   // type is 'success' or 'danger' etc.
   const alertContainer = document.getElementById('alertContainer');
   const alert = document.createElement('div');

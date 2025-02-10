@@ -65,7 +65,7 @@
      </script>
      
      </head>
-     <body onload="getLoginStatus();displayLoginName()">
+     <body onload="displayLoginName();getLoginStatus();">
         <!-- LOADER -->
             <div class="preloader">
                 <div class="lds-ellipsis">
@@ -139,10 +139,10 @@
                             </ul>
                         </div>
                         <a class="nav-link nav_item" href="#" onclick="alert('Sorry, this feature is still under development.');">Services</a>
-                             <ul class="header_list">
-                                 <span><img id="account-image" src="./assets/images/accountPicture.png" alt="Avatar" width="30px" height="30px" onclick="window.location.href='./accountDashboard.html'"></span>
-                                 <li><a href="#"><!--<i class="ti-user">--></i><span id="lnkLogin" onclick="window.localStorage.clear();window.location.href='./login.html'">Logout</span></a></li>
-                             </ul>
+                            <ul class="header_list">
+                                <span><img id="account-image" src="./assets/images/accountPicture.png" alt="Avatar" width="30px" height="30px" onclick="window.location.href='./accountDashboard.html'"></span>
+                                <li><a href="#"><!--<i class="ti-user">--></i><span id="lnkLogin" onclick="window.localStorage.clear();window.location.href='./login.html'">Logout</span></a></li>
+                            </ul>
                         <!--<a class="nav-link nav_item" href="./login.html">Login / Signup</a>-->
                     </div>
                 </nav>
@@ -299,7 +299,7 @@
             <!-- Hovered Over Product Action Box -->   
                 <div class="product_action_box">
                     <ul class="list_none pr_action_btn">
-                        <li class="add-to-cart"><a href="#" onclick="captureFirstProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</a></li>
+                        <li class="add-to-cart"><a href="#" onclick="captureFirstProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
                       <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
                         <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
                         <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>                               
@@ -332,10 +332,9 @@
                     Type: Animal Consumable
                     Weight: <span id="firstProductWeight">14oz</span>
                 </span> 
-             </div>
-            <!-- End of Brief Product Description --> 
+               </div>
+               <!-- End of Brief Product Description --> 
             
-
                 <center>
                        <!-- Insert a "Add to Cart Button Here" -->
                         <div class="cart_btn">
@@ -801,18 +800,21 @@
                     </div>
                      <!-- End of reviews rating -->
 
-                      <!-- Brief Product description -->
-                      <div>
+                     <!-- Brief Product description -->
+                     <div>
                         <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Category: Hamster Food
+                            <br/>
+                            Type: Small Animal
+                            Weight: <span id="ninethProductWeight">600 g</span>
                         </span> 
-                      </div>
-                      <!-- End of Brief Product Description -->  
-                    
+                    </div>
+                    <!-- End of Brief Product Description --> 
+
                     <center>
                     <!-- Insert a "Add to Cart Button Here" -->
                      <div class="cart_btn">
-                         <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureNinethProductInfo('9','AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                         <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureNinethProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
                      </div>
                    </center>
                 </div>
@@ -825,13 +827,13 @@
         <div class="product">
             <div class="product_img">
                 <a href="shop-product-detail.html">
-                    <img src="assets/images/product_img10.jpg" alt="product_img10" id="tenthProductImage">
+                    <img src="./assets/images/products/hamsters/marukan-clean-golden-hamster-food-mix-280g.png" alt="product_img10" id="tenthProductImage">
                 </a>
 
                 <!-- Hovered Over Product Action Box -->   
                <div class="product_action_box">
                   <ul class="list_none pr_action_btn">
-                        <li class="add-to-cart"><a href="#" onclick="captureNinethProductInfo('10','AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
+                        <li class="add-to-cart"><a href="#" onclick="captureTenthProductInfo('AddToCart');"><i class="icon-basket-loaded"></i>Add To Cart</a></li>
                     <!-- <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
                         <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li> -->
                         <li><a href="#"><i class="icon-heart" onclick="displayWishListMessage();"></i></a></li>
@@ -841,24 +843,37 @@
             </div>
             <div class="product_info">
                 <!--<h6 class="product_title" id="tenthProductName" onclick="captureTenthProductInfo('ProductDetail');"><a href="#">Parrot Treat #1</a></h6>-->
-                <h6 class="product_title" id="tenthProductName" onclick="captureNinethProductInfo('10','ProductDetail');"><a href="#">Parrot Treat #1</a></h6>
+                <h6 class="product_title" id="tenthProductName" onclick="captureTenthProductInfo('ProductDetail');"><a href="#">Marukan Clean Golden Hamster Food Mix 280g</a></h6>
                 
                 <div class="product_price">
-                    <span class="price" id="tenthProductPrice">$6.00</span>
+                    <span class="price" id="tenthProductPrice">$15.50</span>
+                    <del>$20.00</del> <!-- RRP -->      
                 </div>
 
+                 <!-- Reviews Ratings --> 
+                 <div class="rating_wrap">
+                    <div class="rating">
+                        <div class="product_rate" style="width:100%"></div>
+                    </div>
+                    <span class="rating_num">(21)</span>
+                </div>
+                 <!-- End of reviews rating -->
+
                   <!-- Brief Product description -->
-                  <div>
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </span> 
-                  </div>
-                  <!-- End of Brief Product Description -->  
+                    <div>
+                        <span>
+                            Category: Hamster Food
+                            <br/>
+                            Type: Small Animal
+                            Weight: <span id="tenthProductWeight">280 g</span>
+                        </span> 
+                    </div>
+                    <!-- End of Brief Product Description --> 
                 
                 <center>
                 <!-- Insert a "Add to Cart Button Here" -->
                  <div class="cart_btn">
-                     <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureNinethProductInfo('10','AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
+                     <button class="btn btn-fill-out btn-addtocart" type="button" onclick="captureTenthProductInfo('10','AddToCart');"><i class="icon-basket-loaded"></i>Buy Now</button>                                    
                  </div>
                </center>
             </div>
@@ -1231,7 +1246,7 @@
                             </li>
                             <l1>
                                 <ul class="widget_links">
-                                    <li><a href="./contact.html">Contact Us</a></li>
+                                    <li><a href="./contact1.html">Contact Us</a></li>
                                 </ul>
                             </l1>
                         </ul>
@@ -1308,9 +1323,6 @@
 
 <!-- Custom Javascript -->
 <script defer src="./assets/js/pets_scripts.js"></script>
-
-
-     
 
 </body>
 </html>
